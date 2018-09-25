@@ -11,6 +11,9 @@ import { EquipmentPageComponent } from './_components/equipment-page/equipment-p
 import { OffendersPageComponent } from './_components/offenders-page/offenders-page.component';
 import { MainHeaderComponent } from './_components/main-header/main-header.component';
 import { SubHeaderComponent } from './_components/sub-header/sub-header.component';
+import { OffendersListComponent } from './_components/offenders-page/offenders-list/offenders-list.component';
+import { EventsListComponent } from './_components/events-page/events-list/events-list.component';
+import { EventsDetailComponent } from './_components/events-page/events-detail/events-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { SubHeaderComponent } from './_components/sub-header/sub-header.componen
     EquipmentPageComponent,
     OffendersPageComponent,
     MainHeaderComponent,
-    SubHeaderComponent
+    SubHeaderComponent,
+    OffendersListComponent,
+    EventsListComponent,
+    EventsDetailComponent
   ],
   imports: [
     BrowserModule,
