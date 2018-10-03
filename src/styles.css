@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.list-group {
+  border-style: dotted;
+}
+.list-group-item tr:nth-child(odd) { /*(even) or (2n 0)*/
+  background: #ffff11;
+}
+.list-group-item tr:nth-child(even) { /*(even) or (2n 0)*/
+  background: #ff0011;
+}
+.Test {
+  background: aliceblue;
+}
