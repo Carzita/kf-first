@@ -1,3 +1,13 @@
-<p>
-  offenders-list works!
-</p>
+<p>offender-list.component</p>
+
+<!--<ul>
+  <li *ngFor="let item of offenders; let i = index">
+    {{i}} {{item}}
+  </li>
+</ul> -->
+
+<button class="btn-primary" (click)="getAll()">Get offenders</button>
+<ul class="offenders">
+  <li *ngFor="let offender of offenders">{{ offender }}</li>
+  <li>test under ngFor</li>
+</ul>

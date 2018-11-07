@@ -22,13 +22,17 @@ import {environment} from '../environments/environment';
 import { EventsItemComponent } from './_components/events-page/events-list/events-item/events-item.component';
 import {RouterModule, Routes} from '@angular/router';
 import { NotFoundComponent } from './_components/not-found.component';
+import { SigninComponent } from './authentication/signin/signin.component';
+import {AuthGuard} from './auth-guard';
+import { OffenderService} from './services/offender.service';
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent},
+  { path: '', component: EventsPageComponent},
   { path: 'users', component: UsersPageComponent },
   { path: 'events', component: EventsPageComponent},
   { path: 'equipment', component: EquipmentPageComponent},
   { path: 'offenders', component: OffendersPageComponent},
+  { path: 'signin', component: SigninComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -46,11 +50,12 @@ const appRoutes: Routes = [
     EventsListComponent,
     EventsDetailComponent,
     EventsItemComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
@@ -58,7 +63,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [AuthGuard, OffenderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
