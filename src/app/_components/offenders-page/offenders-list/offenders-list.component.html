@@ -8,6 +8,6 @@
 
 <button class="btn-primary" (click)="getAll()">Get offenders</button>
 <ul class="offenders">
-  <li *ngFor="let offender of offenders">{{ offender }}</li>
+  <li *ngFor="let offender of offenders | keyvalue">{{offender.key}}:{{offender.value}}</li>
   <li>test under ngFor</li>
 </ul>

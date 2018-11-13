@@ -1,7 +1,7 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Offender} from '../_models/offender';
 import {Injectable} from '@angular/core';
-import { map } from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {Observable, pipe} from 'rxjs';
 import {Event} from '../_models/event';
 
@@ -23,7 +23,11 @@ export class OffenderService {
       return data;
     }
    )); */
-   return this.httpClient.get<Offender[]>('https://localhost:44330/api/values');
+   return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
+   .pipe(
+       tap ( // log the result or error
+         data => console.log(data),
+       error => console.log(error))
+     );
   }
-
 }

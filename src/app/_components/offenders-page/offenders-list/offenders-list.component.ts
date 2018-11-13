@@ -23,8 +23,8 @@ export class OffendersListComponent implements OnInit {
       ); */
     this.offenderSerivce.getOffenders()
       .subscribe(
-        offenders => console.log(offenders));
-        // offenders => this.offenders = offenders);
+        // offenders => console.log(offenders));
+         offenders => this.offenders = offenders);
 
   }
 
