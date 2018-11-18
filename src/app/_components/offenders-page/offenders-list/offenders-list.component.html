@@ -8,6 +8,9 @@
 
 <button class="btn-primary" (click)="getAll()">Get offenders</button>
 <ul class="offenders">
-  <li *ngFor="let offender of offenders | keyvalue">{{offender.key}}:{{offender.value}}</li>
-  <li>test under ngFor</li>
+  <li>test over ngFor med iteration af rigtig? test</li>
+  <div *ngFor="let objects of offendersarray2">
+    <li *ngFor="let forbryder of objects | keyvalue">{{forbryder.key}}:{{forbryder.value}}</li>
+    <!--<li *ngFor="let offender of objects">{{ offender.offenderId }}</li>-->
+  </div>
 </ul>

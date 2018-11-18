@@ -9,13 +9,20 @@ import {Offender} from '../../../_models/offender';
   styleUrls: ['./offenders-list.component.css']
 })
 export class OffendersListComponent implements OnInit {
-  offenders: Offender[];
-  constructor(private offenderSerivce: OffenderService) { }
+  offendersarray: Offender[];
+  offendersarray2: Offender[];
+  constructor(private offenderSerivce: OffenderService) {
+    this.offendersarray = [];
+    this.offendersarray2 = [];
+  }
 
   ngOnInit() {
       this.getAll();
   }
-  getAll(): void {
+  generateArray(offenders) {
+  return Object.keys(offenders).map((key) => offenders[key]);
+}
+  getAll() {
     /*this.offenderSerivce.getOffenders()
       .subscribe(
         (offender: any[] => console.log(offender),
@@ -23,9 +30,14 @@ export class OffendersListComponent implements OnInit {
       ); */
     this.offenderSerivce.getOffenders()
       .subscribe(
-        // offenders => console.log(offenders));
-         offenders => this.offenders = offenders);
-
+        offenders => {
+          this.offendersarray = offenders;
+          this.offendersarray2 = this.generateArray(this.offendersarray);
+        });
+   /* const useThis = Object.keys(this.offenders);
+    for (const prop of useThis) {
+      this.offendersarray2.push(useThis[prop]);
+    } */
   }
 
 }

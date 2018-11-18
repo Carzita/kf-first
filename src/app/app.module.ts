@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import {AppComponent} from './app.component';
@@ -20,21 +20,15 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import { EventsItemComponent } from './_components/events-page/events-list/events-item/events-item.component';
-import {RouterModule, Routes} from '@angular/router';
 import { NotFoundComponent } from './_components/not-found.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import {AuthGuard} from './auth-guard';
 import { OffenderService} from './services/offender.service';
-
-const appRoutes: Routes = [
-  { path: '', component: EventsPageComponent},
-  { path: 'users', component: UsersPageComponent },
-  { path: 'events', component: EventsPageComponent},
-  { path: 'equipment', component: EquipmentPageComponent},
-  { path: 'offenders', component: OffendersPageComponent},
-  { path: 'signin', component: SigninComponent},
-  {path: '**', component: NotFoundComponent}
-];
+import {ValuePipe} from './value.pipe';
+import {AppRouting} from './app.routing';
+import {RouterModule} from '@angular/router';
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +45,8 @@ const appRoutes: Routes = [
     EventsDetailComponent,
     EventsItemComponent,
     NotFoundComponent,
-    SigninComponent
+    SigninComponent,
+    ValuePipe
   ],
   imports: [
     BrowserModule,
@@ -61,7 +56,13 @@ const appRoutes: Routes = [
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    AppRouting,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatTableModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard, OffenderService],
   bootstrap: [AppComponent]

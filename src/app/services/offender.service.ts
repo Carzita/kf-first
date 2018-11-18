@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {map, tap} from 'rxjs/operators';
 import {Observable, pipe} from 'rxjs';
 import {Event} from '../_models/event';
+import {AuthGuard} from '../auth-guard';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,7 +15,8 @@ const httpOptions = {
 
 @Injectable()
 export class OffenderService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private authGuard: AuthGuard ) {}
 
   getOffenders(): Observable<Offender[]> {
   /* return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
@@ -23,7 +25,9 @@ export class OffenderService {
       return data;
     }
    )); */
-   return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
+  // const token = this.authGuard.getToken();
+  return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
+   // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + token)
    .pipe(
        tap ( // log the result or error
          data => console.log(data),
