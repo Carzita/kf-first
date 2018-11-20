@@ -29,6 +29,7 @@ import {AppRouting} from './app.routing';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { OffendersCreateComponent } from './_components/offenders-page/offenders-create/offenders-create.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     EventsItemComponent,
     NotFoundComponent,
     SigninComponent,
-    ValuePipe
+    ValuePipe,
+    OffendersCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatTableModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard, OffenderService],
   bootstrap: [AppComponent]

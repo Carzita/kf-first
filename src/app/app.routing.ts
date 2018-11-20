@@ -6,6 +6,7 @@ import {EquipmentPageComponent} from './_components/equipment-page/equipment-pag
 import {OffendersPageComponent} from './_components/offenders-page/offenders-page.component';
 import {SigninComponent} from './authentication/signin/signin.component';
 import {NotFoundComponent} from './_components/not-found.component';
+import {OffendersCreateComponent} from './_components/offenders-page/offenders-create/offenders-create.component';
 
 const appRoutes: Routes = [
   { path: '', component: EventsPageComponent},
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'equipment', component: EquipmentPageComponent},
   { path: 'offenders', component: OffendersPageComponent},
   { path: 'signin', component: SigninComponent},
+  {path: 'create', component: OffendersCreateComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

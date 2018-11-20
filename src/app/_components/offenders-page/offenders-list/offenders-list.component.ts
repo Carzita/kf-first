@@ -23,12 +23,12 @@ export class OffendersListComponent implements OnInit {
   return Object.keys(offenders).map((key) => offenders[key]);
 }
   getAll() {
-    /*this.offenderSerivce.getOffenders()
+    /*this.offenderSerivce.getAllOffenders()
       .subscribe(
         (offender: any[] => console.log(offender),
         (error) => console.log(error)
       ); */
-    this.offenderSerivce.getOffenders()
+    this.offenderSerivce.getAllOffenders()
       .subscribe(
         offenders => {
           this.offendersarray = offenders;

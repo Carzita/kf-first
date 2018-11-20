@@ -18,13 +18,7 @@ export class OffenderService {
   constructor(private httpClient: HttpClient,
               private authGuard: AuthGuard ) {}
 
-  getOffenders(): Observable<Offender[]> {
-  /* return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
-     .pipe(map((response: Response) => {
-      const data = response.json();
-      return data;
-    }
-   )); */
+  getAllOffenders(): Observable<Offender[]> {
   // const token = this.authGuard.getToken();
   return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
    // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + token)
@@ -33,5 +27,22 @@ export class OffenderService {
          data => console.log(data),
        error => console.log(error))
      );
+  }
+  getSingleOffender(UID): Observable<Offender[]> {
+    // return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
+     return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders/' + UID + '.json')
+      .pipe(
+        tap ( // log the result or error
+          data => console.log(data),
+          error => console.log(error))
+      );
+  }
+  addOffender(offender: Offender): Observable<Offender> {
+    return this.httpClient.post<Offender>('https://iokrf-3d980.firebaseio.com/offenders.json', offender)
+      .pipe(
+        tap ( // log the result or error
+          data => console.log(data),
+          error => console.log(error))
+      );
   }
 }

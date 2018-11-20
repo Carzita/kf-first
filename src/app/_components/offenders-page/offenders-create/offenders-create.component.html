@@ -1,0 +1,55 @@
+<form [formGroup]="offendersForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+  <label>
+    CPR:
+    <input type="text" formControlName="cpr" required>
+  </label>
+
+  <label>
+    First name:
+    <input type="text" formControlName="firstName" required>
+  </label>
+
+  <label>
+    Middle name:
+    <input type="text" formControlName="middleName">
+  </label>
+
+  <label>
+    Last name:
+    <input type="text" formControlName="lastName" required>
+  </label>
+
+  <label>
+    City:
+    <input type="text" formControlName="city" required>
+  </label>
+
+  <label>
+    Address:
+    <input type="text" formControlName="address" required>
+  </label>
+
+  <label>
+    Zip:
+    <input type="text" formControlName="zip" required>
+  </label>
+  </div>
+<button class="btn btn-primary" type="submit" [disabled]="!offendersForm.valid">Submit</button>
+
+</form>
+
+<p>
+  Form Status: {{ offendersForm.status }}
+  <br>
+  Form Value: {{offendersForm.value}}
+</p>
+<!--DEBUG-->
+<p>Fields valid?</p>
+<pre>cpr: {{offendersForm.get('cpr').valid}}</pre>
+<pre>firstName: {{offendersForm.get('firstName').valid}}</pre>
+<pre>middleName: {{offendersForm.get('middleName').valid}}</pre>
+<pre>lastName: {{offendersForm.get('lastName').valid}}</pre>
+<pre>city: {{offendersForm.get('city').valid}}</pre>
+<pre>address: {{offendersForm.get('address').valid}}</pre>
+<pre>zip: {{offendersForm.get('zip').valid}}</pre>
