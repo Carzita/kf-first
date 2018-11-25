@@ -30,6 +30,12 @@ import {RouterModule} from '@angular/router';
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { OffendersCreateComponent } from './_components/offenders-page/offenders-create/offenders-create.component';
+import { OffenderProfileComponent } from './_components/offenders-page/offender-profile/offender-profile.component';
+import {EventService} from './services/event.service';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { LoadSpinnerComponent } from './_components/load-spinner/load-spinner.component';
+import {AuthService} from './services/auth.service';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,9 @@ import { OffendersCreateComponent } from './_components/offenders-page/offenders
     NotFoundComponent,
     SigninComponent,
     ValuePipe,
-    OffendersCreateComponent
+    OffendersCreateComponent,
+    OffenderProfileComponent,
+    LoadSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -65,9 +73,11 @@ import { OffendersCreateComponent } from './_components/offenders-page/offenders
     MatNativeDateModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    MatExpansionModule,
+    AngularFontAwesomeModule
   ],
-  providers: [AuthGuard, OffenderService],
+
+  providers: [AuthGuard, OffenderService, EventService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

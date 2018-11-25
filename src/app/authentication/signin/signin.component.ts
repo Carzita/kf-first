@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthGuard} from '../../auth-guard';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -9,7 +10,7 @@ import {AuthGuard} from '../../auth-guard';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private authGuard: AuthGuard) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -17,6 +18,6 @@ export class SigninComponent implements OnInit {
   onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.authGuard.signUserIn(email, password);
+    this.authService.signUserIn(email, password);
   }
 }

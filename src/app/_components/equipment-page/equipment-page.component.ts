@@ -3,6 +3,31 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
+@Component({
+  selector: 'app-equipment-page',
+  templateUrl: './equipment-page.component.html',
+  styleUrls: ['./equipment-page.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
+})
+
+export class EquipmentPageComponent implements OnInit {
+  dataSource = ELEMENT_DATA;
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  expandedElement: PeriodicElement;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -92,28 +117,3 @@ const ELEMENT_DATA: PeriodicElement[] = [
         two-thirds the density of air.`
   },
 ];
-
-
-@Component({
-  selector: 'app-equipment-page',
-  templateUrl: './equipment-page.component.html',
-  styleUrls: ['./equipment-page.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
-})
-export class EquipmentPageComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
-  expandedElement: PeriodicElement;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}

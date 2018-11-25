@@ -1,13 +1,17 @@
 export class Event {
-  public eventId: string;
+  public cpr: string;
   public eventType: string;
-  public user: string;
+  public firstName: string;
+  public middleName: string;
+  public lastName: string;
   public time: string;
 
-  constructor(eventId: string, eventType: string, user: string, time: string) {
-    this.eventId = eventId;
+  constructor(cpr: string, eventType: string, firstName: string, middleName: string, lastName: string, time: string) {
+    this.cpr = cpr;
     this.eventType = eventType;
-    this.user = user;
+    this.firstName = firstName;
+    this.middleName = middleName;
+    this.lastName = lastName;
     this.time = time;
   }
 }

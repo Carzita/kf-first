@@ -7,13 +7,18 @@ import {OffendersPageComponent} from './_components/offenders-page/offenders-pag
 import {SigninComponent} from './authentication/signin/signin.component';
 import {NotFoundComponent} from './_components/not-found.component';
 import {OffendersCreateComponent} from './_components/offenders-page/offenders-create/offenders-create.component';
+import {OffenderProfileComponent} from './_components/offenders-page/offender-profile/offender-profile.component';
 
 const appRoutes: Routes = [
-  { path: '', component: EventsPageComponent},
+  { path: '', redirectTo: '/events', pathMatch: 'full'},
   { path: 'users', component: UsersPageComponent },
   { path: 'events', component: EventsPageComponent},
   { path: 'equipment', component: EquipmentPageComponent},
+/*  { path: 'offenders', component: OffendersPageComponent, children: [
+      {path: 'profile', component: OffenderProfileComponent}
+    ]},*/
   { path: 'offenders', component: OffendersPageComponent},
+  { path: 'offendersprofile', component: OffenderProfileComponent},
   { path: 'signin', component: SigninComponent},
   {path: 'create', component: OffendersCreateComponent},
   {path: '**', component: NotFoundComponent}

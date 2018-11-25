@@ -1,43 +1,48 @@
-<form [formGroup]="offendersForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-  <label>
-    CPR:
-    <input type="text" formControlName="cpr" required>
-  </label>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md offset-2">
+    <form [formGroup]="offendersForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>
+          CPR:
+          <input id="cpr" type="text" formControlName="cpr" required pattern="[0-3][0-9][0-1][1-9]\d{2}-\d{4}?[^0-9]*" ngModel class="form-control" >
+            <div *ngIf=""></div>
+        </label>
+        <br>
+        <label>
+          First name:
+          <input type="text" formControlName="firstName" required ngModel class="form-control">
+        </label>
+        <br>
+        <label>
+          Middle name:
+          <input type="text" formControlName="middleName" ngModel class="form-control">
+        </label>
+        <br>
+        <label>
+          Last name:
+          <input type="text" formControlName="lastName" ngModel class="form-control">
+        </label>
+        <br>
+        <label>
+          City:
+          <input type="text" formControlName="city" required ngModel class="form-control">
+        </label>
+        <br>
+        <label>
+          Address:
+          <input type="text" formControlName="address" required ngModel class="form-control">
+        </label>
+        <br>
+        <label>
+          Zip:
+          <input type="text" formControlName="zip" required ngModel class="form-control">
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!offendersForm.valid">Submit</button>
 
-  <label>
-    First name:
-    <input type="text" formControlName="firstName" required>
-  </label>
-
-  <label>
-    Middle name:
-    <input type="text" formControlName="middleName">
-  </label>
-
-  <label>
-    Last name:
-    <input type="text" formControlName="lastName" required>
-  </label>
-
-  <label>
-    City:
-    <input type="text" formControlName="city" required>
-  </label>
-
-  <label>
-    Address:
-    <input type="text" formControlName="address" required>
-  </label>
-
-  <label>
-    Zip:
-    <input type="text" formControlName="zip" required>
-  </label>
+    </form>
   </div>
-<button class="btn btn-primary" type="submit" [disabled]="!offendersForm.valid">Submit</button>
-
-</form>
+</div>
 
 <p>
   Form Status: {{ offendersForm.status }}

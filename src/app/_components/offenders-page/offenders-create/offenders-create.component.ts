@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {OffenderService} from '../../../services/offender.service';
 
@@ -8,9 +8,10 @@ import {OffenderService} from '../../../services/offender.service';
   styleUrls: ['./offenders-create.component.css']
 })
 export class OffendersCreateComponent implements OnInit {
+  @Input() pattern: string | RegExp;
 
   offendersForm = this.fb.group({
-    cpr: ['123456-1234', Validators.required],
+    cpr: [Validators.required, Validators.pattern('[0-3][0-9][0-1][1-9]\\d{2}-\\d{4}?[^0-9]*')],
     firstName: ['test', Validators.required],
     middleName: ['lol', Validators],
     lastName: ['testesen', Validators.required],

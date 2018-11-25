@@ -1,20 +1,20 @@
-<!--<div class="Test">
-    <div class=.col-md-4>
-      <h1 class="col-md-4">Event</h1>
-    </div>
-    <div class=.col-md-4>
-      <h1 class="col-md-4">Navn</h1>
-    </div>
-    <div class=.col-md-4>
-      <h1 class="col-md-4">Tidspunkt</h1>
-    </div>
-</div>
-  <div class="list-group">
-    <app-events-item></app-events-item>
-  </div>
-<br>
-<br>-->
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Navn</th>
+    <th>Begivenheds type</th>
+    <th>Tidspunkt</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="clickable" [routerLink]="['/offendersprofile']" *ngFor="let Event of convertedEventArray"  >
+    <td>{{ Event.firstName }} {{Event.middleName}} {{Event.lastName}}</td>
+    <td>{{ Event.eventType }}</td>
+    <td>{{ Event.time }}</td>
+  </tr>
+  </tbody>
+</table>
 
-<div class="container">
+<!--<div class="container">
     <app-events-item></app-events-item>
-</div>
+</div>-->

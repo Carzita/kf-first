@@ -9,20 +9,22 @@ import {Offender} from '../../../_models/offender';
   styleUrls: ['./offenders-list.component.css']
 })
 export class OffendersListComponent implements OnInit {
-  offendersarray: Offender[];
-  offendersarray2: Offender[];
+  showSpinner = true;
+  errorLoading = false;
+  objectArray: Offender[];
+  convertedOffenderArray: Offender[];
   constructor(private offenderSerivce: OffenderService) {
-    this.offendersarray = [];
-    this.offendersarray2 = [];
+    this.objectArray = [];
+    this.convertedOffenderArray = [];
   }
 
   ngOnInit() {
-      this.getAll();
+      this.getAllOffenders();
   }
   generateArray(offenders) {
-  return Object.keys(offenders).map((key) => offenders[key]);
+      return Object.keys(offenders).map((key) => offenders[key]);
 }
-  getAll() {
+  getAllOffenders() {
     /*this.offenderSerivce.getAllOffenders()
       .subscribe(
         (offender: any[] => console.log(offender),
@@ -31,12 +33,18 @@ export class OffendersListComponent implements OnInit {
     this.offenderSerivce.getAllOffenders()
       .subscribe(
         offenders => {
-          this.offendersarray = offenders;
-          this.offendersarray2 = this.generateArray(this.offendersarray);
+          this.objectArray = offenders;
+          this.convertedOffenderArray = this.generateArray(this.objectArray);
+          this.showSpinner = false;
+        },
+        error => {
+          this.showSpinner = false;
+          this.errorLoading = true;
+          console.log(error);
         });
    /* const useThis = Object.keys(this.offenders);
     for (const prop of useThis) {
-      this.offendersarray2.push(useThis[prop]);
+      this.convertedOffenderArray.push(useThis[prop]);
     } */
   }
 
