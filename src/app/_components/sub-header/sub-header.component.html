@@ -4,14 +4,12 @@
       <a class="navbar-brand"[routerLink]="['']"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a [routerLink]="['/events']">Hændelser</a></li>
-      <li><a [routerLink]="['/offenders']">Forbryderer</a></li>
-      <li><a [routerLink]="['/equipment']">Udstyr</a></li>
-      <li><a [routerLink]="['/users']">Brugere</a></li>
-      <li><a [routerLink]="['/create']">create</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/events']" >Hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/details']">Oplysninger</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/equipment']">Udstyr</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a [routerLink]="['/create']"><span class="fas fa-sign-in-alt"></span>Opret ny forbryder</a></li>
+      <li><a [routerLink]="['/create']"><span class="far fa-arrow-alt-circle-down"></span>Opret ny forbryder</a></li>
     </ul>
   </div>
   <div></div>

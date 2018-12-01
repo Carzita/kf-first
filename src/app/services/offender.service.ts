@@ -54,9 +54,9 @@ export class OffenderService {
   }
 */
 
-  getSingleOffender(UID): Observable<Offender[]> {
+  getSingleOffender(cpr: string): Observable<Offender> {
     // return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
-     return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders/' + UID + '.json')
+     return this.httpClient.get<Offender>('https://iokrf-3d980.firebaseio.com/offenders/' + cpr + '.json')
       .pipe(
         tap ( // log the result or error
           data => console.log(data),
@@ -64,7 +64,7 @@ export class OffenderService {
       );
   }
   addOffender(offender: Offender): Observable<Offender> {
-    return this.httpClient.post<Offender>('https://iokrf-3d980.firebaseio.com/offenders.json', offender)
+    return this.httpClient.put<Offender>('https://iokrf-3d980.firebaseio.com/offenders/' + offender.cpr + '.json', offender)
       .pipe(
         tap ( // log the result or error
           data => console.log(data),

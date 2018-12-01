@@ -12,12 +12,12 @@ export class OffendersCreateComponent implements OnInit {
 
   offendersForm = this.fb.group({
     cpr: [Validators.required, Validators.pattern('[0-3][0-9][0-1][1-9]\\d{2}-\\d{4}?[^0-9]*')],
-    firstName: ['test', Validators.required],
-    middleName: ['lol', Validators],
-    lastName: ['testesen', Validators.required],
-    city: ['testby', Validators.required],
-    address: ['testvej', Validators.required],
-    zip: ['1234', Validators.required],
+    firstName: [Validators.required],
+    middleName: [Validators],
+    lastName: [Validators.required],
+    city: [Validators.required],
+    address: [Validators.required],
+    zip: [Validators.required],
   });
   constructor(private fb: FormBuilder, private offenderSerivce: OffenderService) { }
 

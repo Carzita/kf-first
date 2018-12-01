@@ -35,6 +35,7 @@ export class OffendersListComponent implements OnInit {
         offenders => {
           this.objectArray = offenders;
           this.convertedOffenderArray = this.generateArray(this.objectArray);
+          console.log(this.convertedOffenderArray);
           this.showSpinner = false;
         },
         error => {

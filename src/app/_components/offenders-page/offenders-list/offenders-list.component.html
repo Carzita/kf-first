@@ -3,6 +3,7 @@
   <app-load-spinner *ngIf="showSpinner"></app-load-spinner>
   <thead>
   <tr>
+    <th>Række nummer</th>
     <th>Fornavn</th>
     <th>Mellemnavn</th>
     <th>Efternavn</th>
@@ -10,7 +11,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr class="clickable" [routerLink]="['/offendersprofile']" *ngFor="let Offender of convertedOffenderArray"  >
+  <tr class="clickable" [routerLink]="['/offenders', Offender.cpr]" *ngFor="let Offender of convertedOffenderArray; let row_numba = index">
+    <td> {{row_numba + 1}}</td>
     <td>{{ Offender.firstName }}</td>
     <td>{{ Offender.middleName }}</td>
     <td>{{ Offender.lastName }}</td>

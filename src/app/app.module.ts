@@ -36,6 +36,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { LoadSpinnerComponent } from './_components/load-spinner/load-spinner.component';
 import {AuthService} from './services/auth.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { OffenderDetailsComponent } from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
+import {OffenderResolverService} from './services/offenderResolver.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     ValuePipe,
     OffendersCreateComponent,
     OffenderProfileComponent,
-    LoadSpinnerComponent
+    LoadSpinnerComponent,
+    OffenderDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     AngularFontAwesomeModule
   ],
 
-  providers: [AuthGuard, OffenderService, EventService, AuthService],
+  providers: [AuthGuard, OffenderService, EventService, AuthService, OffenderResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
