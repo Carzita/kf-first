@@ -10,9 +10,10 @@ export class EventService {
   constructor(private httpClient: HttpClient,
               private authGuard: AuthGuard ) {}
 
-  getAllEvents(): Observable<Event[]> {
+  getAllNewEvents(): Observable<Event[]> {
     // const token = this.authGuard.getToken();
-    return this.httpClient.get<Event[]>('https://localhost:44330/api/event')
+    // return this.httpClient.get<Event[]>('https://localhost:44330/api/event')
+    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/events/newEvents.json')
     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + token)
       .pipe(
         tap ( // log the result or error

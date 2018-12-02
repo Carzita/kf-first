@@ -25,7 +25,7 @@ export class EventsListComponent implements OnInit {
     return Object.keys(events).map((key) => events[key]);
   }
   getAllEvents() {
-    this.eventService.getAllEvents()
+    this.eventService.getAllNewEvents()
       .subscribe(
         events => {
           this.objectArray = events;

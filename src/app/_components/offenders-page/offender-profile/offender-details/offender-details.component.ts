@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {OffenderService} from '../../../../services/offender.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Data, Params} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 
 @Component({
@@ -10,25 +9,18 @@ import {Offender} from '../../../../_models/offender';
 })
 export class OffenderDetailsComponent implements OnInit {
   singleOffender: Offender;
-  parentParams: string;
-  constructor(private route: ActivatedRoute, private offenderSerivce: OffenderService) {  }
+
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-/*      this.route.params
-        .subscribe(
-          (params: Params) => {
-            this.parentParams = params['cpr'];
-          }
-        );
-      this.offenderSerivce.getSingleOffender(this.parentParams)
-        .subscribe(
-          offender => {
-            this.singleOffender = offender;
-            console.log(this.singleOffender);
-          },
-          error => {
-            console.log(error);
-          });*/
-    }
+    this.route.data
+      .subscribe(
+        (data: Data) => {
+          this.singleOffender = data['offender'];
+        }
+      );
+
+  }
 
 }

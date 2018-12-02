@@ -38,6 +38,7 @@ import {AuthService} from './services/auth.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { OffenderDetailsComponent } from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
+import { OffenderEventsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {OffenderResolverService} from './services/offenderResolver.service';
     OffendersCreateComponent,
     OffenderProfileComponent,
     LoadSpinnerComponent,
-    OffenderDetailsComponent
+    OffenderDetailsComponent,
+    OffenderEventsComponent
   ],
   imports: [
     BrowserModule,

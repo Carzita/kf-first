@@ -10,22 +10,27 @@ import {OffendersCreateComponent} from './_components/offenders-page/offenders-c
 import {OffenderProfileComponent} from './_components/offenders-page/offender-profile/offender-profile.component';
 import {OffenderDetailsComponent} from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
+import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/events', pathMatch: 'full'},
-  { path: 'users', component: UsersPageComponent },
-  { path: 'events', component: EventsPageComponent},
-  { path: 'equipment', component: EquipmentPageComponent},
-  { path: 'offenders', component: OffendersPageComponent, children: [
-    { path: ':cpr', component: OffenderProfileComponent, resolve: {offender: OffenderResolverService}, children: [
-  // { path: 'offenders/:cpr', component: OffenderProfileComponent, children: [
-      {path: 'details', component: OffenderDetailsComponent},
+  {path: '', redirectTo: '/events', pathMatch: 'full'},
+  {path: 'users', component: UsersPageComponent},
+  {path: 'events', component: EventsPageComponent},
+  {path: 'equipment', component: EquipmentPageComponent},
+  {path: 'offenders', component: OffendersPageComponent},
+  {
+  // path: 'offenders/:cpr', component: OffenderProfileComponent, resolve: {offender: OffenderResolverService}, children: [
+    path: 'offenders', component: OffenderProfileComponent, children: [
+      // {path: '', redirectTo: ':cpr/details', pathMatch: 'full'},
+      // {path: 'details', component: OffenderDetailsComponent},
+      {path: 'create', component: OffendersCreateComponent},
+      {path: ':cpr/details', component: OffenderDetailsComponent, resolve: {offender: OffenderResolverService}},
       {path: 'equipment', component: OffenderDetailsComponent},
-      {path: 'events', component: OffenderDetailsComponent}
-    ]}]},
-  { path: 'signin', component: SigninComponent},
-  { path: 'create', component: OffendersCreateComponent},
-  { path: '**', component: NotFoundComponent}
+      {path: ':cpr/events', component: OffenderEventsComponent, resolve: {offender: OffenderResolverService}}
+    ]
+  },
+  {path: 'signin', component: SigninComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
