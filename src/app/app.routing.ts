@@ -11,11 +11,15 @@ import {OffenderProfileComponent} from './_components/offenders-page/offender-pr
 import {OffenderDetailsComponent} from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
 import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
+import {EventsDetailComponent} from './_components/events-page/events-list/events-detail/events-detail.component';
+import {EventResolverService} from './services/eventResolver.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/events', pathMatch: 'full'},
   {path: 'users', component: UsersPageComponent},
-  {path: 'events', component: EventsPageComponent},
+  {path: 'events', component: EventsPageComponent, children: [
+      {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventResolverService}}
+      ]},
   {path: 'equipment', component: EquipmentPageComponent},
   {path: 'offenders', component: OffendersPageComponent},
   {
@@ -24,9 +28,9 @@ const appRoutes: Routes = [
       // {path: '', redirectTo: ':cpr/details', pathMatch: 'full'},
       // {path: 'details', component: OffenderDetailsComponent},
       {path: 'create', component: OffendersCreateComponent},
-      {path: ':cpr/details', component: OffenderDetailsComponent, resolve: {offender: OffenderResolverService}},
+      {path: ':id/details', component: OffenderDetailsComponent, resolve: {offender: OffenderResolverService}},
       {path: 'equipment', component: OffenderDetailsComponent},
-      {path: ':cpr/events', component: OffenderEventsComponent, resolve: {offender: OffenderResolverService}}
+      {path: ':id/events', component: OffenderEventsComponent, resolve: {offender: OffenderResolverService}}
     ]
   },
   {path: 'signin', component: SigninComponent},

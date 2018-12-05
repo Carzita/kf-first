@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
+import {Event} from '../../../../_models/event';
 import {ActivatedRoute, Data} from '@angular/router';
-import {Offender} from '../../../../_models/offender';
 
 @Component({
-  selector: 'app-offender-details',
-  templateUrl: './offender-details.component.html',
-  styleUrls: ['./offender-details.component.css']
+  selector: 'app-events-detail',
+  templateUrl: './events-detail.component.html',
+  styleUrls: ['./events-detail.component.css']
 })
-export class OffenderDetailsComponent implements OnInit {
-  singleOffender: Offender;
+export class EventsDetailComponent implements OnInit {
+  singleEvent: Event;
   showSpinner = true;
   errorLoading = false;
 
@@ -19,7 +19,7 @@ export class OffenderDetailsComponent implements OnInit {
     this.route.data
       .subscribe(
         (data: Data) => {
-          this.singleOffender = data['offender'];
+          this.singleEvent = data['event'];
           this.showSpinner = false;
         },
         error => {

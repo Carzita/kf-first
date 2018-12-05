@@ -13,6 +13,8 @@ export class OffenderEventsComponent implements OnInit {
   singleOffender: Offender;
   objectArray: Event[];
   convertedEventArray: Event[];
+  showSpinner = true;
+  errorLoading = false;
 
   constructor(private route: ActivatedRoute, private offenderService: OffenderService) {
     this.objectArray = [];
@@ -24,6 +26,12 @@ export class OffenderEventsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
+          this.showSpinner = false;
+        },
+        error => {
+          this.showSpinner = false;
+          this.errorLoading = true;
+          console.log(error);
         }
       );
     this.getAllOffenderEvents();

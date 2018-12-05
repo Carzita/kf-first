@@ -1,0 +1,24 @@
+<app-not-found *ngIf="errorLoading"></app-not-found>
+<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Grundinformation</div>
+  <div class="panel-body">
+    <span class="firstlabel">Navn:</span>
+    <div class="center">
+      <span class="secondlabel">{{singleEvent.firstName}} {{singleEvent.middleName}} {{singleEvent.lastName}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <span class="firstlabel">Begivenhedstype:</span>
+    <div class="center">
+      <span class="secondlabel">{{singleEvent.eventType}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <span class="firstlabel">Tidspunkt:</span>
+    <div class="center">
+      <span class="secondlabel">{{singleEvent.time}}</span>
+    </div>
+  </div>
+</div>

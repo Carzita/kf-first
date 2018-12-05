@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {OffenderService} from '../../services/offender.service';
 
 @Component({
   selector: 'app-users-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private os: OffenderService) { }
 
   ngOnInit() {
   }
+
+  updateOffender() {
+    this.os.insertOffenderID('-LSskWabv7bGBO9q-Qcy');
+    console.log('update offender called');
+}
 
 }

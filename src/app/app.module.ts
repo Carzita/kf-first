@@ -13,7 +13,7 @@ import { MainHeaderComponent } from './_components/main-header/main-header.compo
 import { SubHeaderComponent } from './_components/sub-header/sub-header.component';
 import { OffendersListComponent } from './_components/offenders-page/offenders-list/offenders-list.component';
 import { EventsListComponent } from './_components/events-page/events-list/events-list.component';
-import { EventsDetailComponent } from './_components/events-page/events-detail/events-detail.component';
+import { EventsDetailComponent } from './_components/events-page/events-list/events-detail/events-detail.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -22,7 +22,6 @@ import {environment} from '../environments/environment';
 import { EventsItemComponent } from './_components/events-page/events-list/events-item/events-item.component';
 import { NotFoundComponent } from './_components/not-found.component';
 import { SigninComponent } from './authentication/signin/signin.component';
-import {AuthGuard} from './auth-guard';
 import { OffenderService} from './services/offender.service';
 import {ValuePipe} from './value.pipe';
 import {AppRouting} from './app.routing';
@@ -34,11 +33,21 @@ import { OffenderProfileComponent } from './_components/offenders-page/offender-
 import {EventService} from './services/event.service';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { LoadSpinnerComponent } from './_components/load-spinner/load-spinner.component';
-import {AuthService} from './services/auth.service';
+import {AuthenticationService} from './services/authentication.service';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { OffenderDetailsComponent } from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
 import { OffenderEventsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {EventResolverService} from './services/eventResolver.service';
+
+const config = {
+  apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
+  authDomain: 'iokrf-3d980.firebaseapp.com',
+  databaseURL: 'https://iokrf-3d980.firebaseio.com',
+  storageBucket: 'iokrf-3d980.appspot.com',
+  messagingSenderId: '136951069661'
+};
 
 @NgModule({
   declarations: [
@@ -65,7 +74,8 @@ import { OffenderEventsComponent } from './_components/offenders-page/offender-p
   ],
   imports: [
     BrowserModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule,
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
@@ -82,7 +92,7 @@ import { OffenderEventsComponent } from './_components/offenders-page/offender-p
     AngularFontAwesomeModule
   ],
 
-  providers: [AuthGuard, OffenderService, EventService, AuthService, OffenderResolverService],
+  providers: [OffenderService, EventService, AuthenticationService, OffenderResolverService, EventResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

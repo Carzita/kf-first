@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {OffenderService} from '../../../services/offender.service';
-import {Observable, of} from 'rxjs';
 import {Offender} from '../../../_models/offender';
 
 @Component({
@@ -13,7 +12,7 @@ export class OffendersListComponent implements OnInit {
   errorLoading = false;
   objectArray: Offender[];
   convertedOffenderArray: Offender[];
-  constructor(private offenderSerivce: OffenderService) {
+  constructor(private offenderService: OffenderService) {
     this.objectArray = [];
     this.convertedOffenderArray = [];
   }
@@ -25,12 +24,12 @@ export class OffendersListComponent implements OnInit {
       return Object.keys(offenders).map((key) => offenders[key]);
 }
   getAllOffenders() {
-    /*this.offenderSerivce.getAllOffenders()
+    /*this.offenderService.getAllOffenders()
       .subscribe(
         (offender: any[] => console.log(offender),
         (error) => console.log(error)
       ); */
-    this.offenderSerivce.getAllOffenders()
+    this.offenderService.getAllOffenders()
       .subscribe(
         offenders => {
           this.objectArray = offenders;
@@ -48,5 +47,4 @@ export class OffendersListComponent implements OnInit {
       this.convertedOffenderArray.push(useThis[prop]);
     } */
   }
-
 }

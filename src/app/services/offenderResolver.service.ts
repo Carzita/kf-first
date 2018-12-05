@@ -8,6 +8,6 @@ import {Observable} from 'rxjs';
 export class OffenderResolverService implements Resolve<Offender> {
   constructor(private offenderService: OffenderService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Offender> | Promise<Offender> | Offender {
-    return this.offenderService.getSingleOffender(route.params['cpr']);
+    return this.offenderService.getSingleOffender(route.params['id']);
   }
 }

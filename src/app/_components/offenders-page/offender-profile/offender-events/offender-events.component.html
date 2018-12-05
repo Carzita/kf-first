@@ -4,8 +4,8 @@
       <a class="navbar-brand"[routerLink]="['']"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.cpr,'events']" >Hændelser</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.cpr,'details']">Oplysninger</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'events']" >Hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'details']">Oplysninger</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/equipment']">Udstyr</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -18,6 +18,10 @@
   </div>
   <div></div>
 </nav>
+
+<app-not-found *ngIf="errorLoading"></app-not-found>
+<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
+
 <table class="table table-striped table-hover">
   <thead>
   <tr>

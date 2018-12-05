@@ -4,15 +4,6 @@
 
 export const environment = {
   production: false,
-
-  /*firebase: {
-    apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
-    authDomain: 'iokrf-3d980.firebaseapp.com',
-    databaseURL: 'https://iokrf-3d980.firebaseio.com',
-    projectId: 'iokrf-3d980',
-    storageBucket: 'iokrf-3d980.appspot.com',
-    messagingSenderId: '136951069661'
-  } */
 };
 
 /*

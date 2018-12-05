@@ -4,3 +4,15 @@ ul.nav a:hover {
 .navbar {
   margin-top: -21px;
 }
+.panel-primary {
+  margin-left: 5em;
+  width: 30%;
+}
+.center {
+  text-align: center;
+  margin-top: -20px;
+}
+.secondlabel {
+  display: inline-block;
+  text-align: left;
+}

@@ -4,8 +4,8 @@
       <a class="navbar-brand"[routerLink]="['']"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/offenders', singleOffender.cpr, 'events']" >Hændelser</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.cpr,'details']">Oplysninger</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders', singleOffender.offenderID, 'events']" >Hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'details']">Oplysninger</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/equipment']">Udstyr</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -18,8 +18,41 @@
   </div>
   <div></div>
 </nav>
+<app-not-found *ngIf="errorLoading"></app-not-found>
+<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
 
-<h2>Get single offender test: {{singleOffender.cpr}}</h2>
+<h2>Get single offender test: {{singleOffender.offenderID}}</h2>
 <p>
   offender-details works!
 </p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Grundinformation</div>
+  <div class="panel-body">
+    <span class="firstlabel">CPR:</span>
+    <div class="center">
+      <span class="secondlabel">{{singleOffender.cpr}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <span class="firstlabel">Fulde navn:</span>
+    <div class="center">
+      <span class="secondlabel">{{singleOffender.firstName}} {{singleOffender.middleName}} {{singleOffender.lastName}}</span>
+    </div>
+  </div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Bolig information</div>
+  <div class="panel-body">
+    <span class="firstlabel">Adresse:</span>
+    <div class="center">
+    <span class="secondlabel">{{singleOffender.address}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <span class="firstlabel">By & postnummer: </span>
+    <div class="center">
+    <span class="secondlabel">{{singleOffender.city}}, {{singleOffender.zip}}</span>
+    </div>
+</div>
+</div>

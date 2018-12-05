@@ -4,6 +4,7 @@
   <app-load-spinner *ngIf="showSpinner"></app-load-spinner>
   <thead>
   <tr>
+    <th>ID</th>
     <th>Fornavn</th>
     <th>Mellemnavn</th>
     <th>Efternavn</th>
@@ -11,7 +12,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr class="clickable" [routerLink]="['/offenders', Offender.cpr, 'details']" *ngFor="let Offender of convertedOffenderArray">
+  <tr class="clickable" [routerLink]="['/offenders', Offender.offenderID, 'details']" *ngFor="let Offender of convertedOffenderArray">
+    <td>{{Offender.offenderID}}</td>
     <td>{{ Offender.firstName }}</td>
     <td>{{ Offender.middleName }}</td>
     <td>{{ Offender.lastName }}</td>
@@ -26,3 +28,10 @@
     <li >{{offender.middleName}}</li>
   </div>
 </ul>
+<p>Test af list ID</p>
+<ul class="offenders">
+  <div *ngFor="let item of objectArray | keyvalue">
+    <li >{{item.key}}</li>
+  </div>
+</ul>
+
