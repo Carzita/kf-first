@@ -34,15 +34,15 @@ export class OffenderEventsComponent implements OnInit {
           console.log(error);
         }
       );
-    this.getAllOffenderEvents();
+    this.getOffenderNewEvents();
   }
 
   generateArray(events) {
     return Object.keys(events).map((key) => events[key]);
   }
 
-  getAllOffenderEvents() {
-    this.offenderService.getOffenderEvents(this.singleOffender.cpr)
+  getOffenderNewEvents() {
+    this.offenderService.getOffenderNewEvents(this.singleOffender.cpr)
       .subscribe(
         events => {
           this.objectArray = events;

@@ -1,10 +1,11 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Offender} from '../_models/offender';
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {map, tap} from 'rxjs/operators';
 import {Observable, pipe, Subscription} from 'rxjs';
 import {Event} from '../_models/event';
 import {AuthenticationService} from './authentication.service';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,14 +18,17 @@ const httpOptions = {
 export class OffenderService {
   responseConvertArray: any[];
 
-  constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) {
+  // offendersChanged = new EventEmitter<T>();
+
+  constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService, private router: Router) {
   }
 
+  // retrieve all Offenders in FireBase
   getAllOffenders(): Observable<Offender[]> {
-     // const fireBaseToken = this.authenticationService.getAuthToken();
+    // const fireBaseToken = this.authenticationService.getAuthToken();
     // return this.httpClient.get<Offender[]>('https://localhost:44330/api/offender')
     return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json')
-     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
+    // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
       .pipe(
         tap( // log the result or error
           data => console.log(data),
@@ -32,6 +36,7 @@ export class OffenderService {
       );
   }
 
+  // retrieve a single offender from FireBase
   getSingleOffender(id: string): Observable<Offender> {
     // return this.httpClient.get<Offender[]>('https://localhost:44330/api/values')
     return this.httpClient.get<Offender>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '.json')
@@ -42,12 +47,7 @@ export class OffenderService {
       );
   }
 
-  /*  addOffender(offender: Offender): Subscription {
-      return this.httpClient.post<Offender>('https://iokrf-3d980.firebaseio.com/offenders/.json', offender, {observe: 'response'})
-        .subscribe(resp => {
-          console.log(resp.body.name);
-        });
-    }*/
+  // add an  offender to Firebase
   addOffender(offender: Offender): Observable<Offender> {
     return this.httpClient.post<Offender>('https://iokrf-3d980.firebaseio.com/offenders/.json', offender)
       .pipe(
@@ -62,7 +62,18 @@ export class OffenderService {
         ));
   }
 
-  getOffenderEvents(id: string): Observable<Event[]> {
+  // after adding offender in the above method, the offenderID is added as a property of the offender so it is easily accessed
+  insertOffenderID(offenderID: string) {
+    return this.httpClient.patch('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json',
+      {
+        'offenderID': offenderID
+      })
+      .subscribe( // log the result or error
+        data => console.log(data),
+        error => console.log(error));
+  }
+
+  getOffenderNewEvents(id: string): Observable<Event[]> {
     return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '/zzevents/newEvents.json')
     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
       .pipe(
@@ -72,13 +83,13 @@ export class OffenderService {
       );
   }
 
-  insertOffenderID(offenderID: string) {
-    return this.httpClient.patch('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json',
-      {
-        'offenderID': offenderID
-      })
+  deleteOffender(offenderID: string) {
+    return this.httpClient.delete('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json')
       .subscribe( // log the result or error
-        data => console.log(data),
+        data => {
+          console.log(data);
+          this.router.navigate(['/offenders']);
+        },
         error => console.log(error));
   }
 }

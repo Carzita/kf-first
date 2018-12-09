@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OffendersListComponent } from './offenders-list.component';
+import {OffenderService} from '../../../services/offender.service';
 
 describe('OffendersListComponent', () => {
   let component: OffendersListComponent;
@@ -19,7 +20,11 @@ describe('OffendersListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+/*  it('should be using offender ID from service', () => {
+    let fixture = TestBed.createComponent(OffendersListComponent);
+    let app = fixture.debugElement.componentInstance;
+    let offendersService = fixture.debugElement.injector.get(OffenderService);
+    fixture.detectChanges();
+    expect(offendersService.getAllOffenders).toEqual(app.of)
+  });*/
 });

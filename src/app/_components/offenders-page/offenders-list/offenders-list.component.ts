@@ -42,9 +42,5 @@ export class OffendersListComponent implements OnInit {
           this.errorLoading = true;
           console.log(error);
         });
-   /* const useThis = Object.keys(this.offenders);
-    for (const prop of useThis) {
-      this.convertedOffenderArray.push(useThis[prop]);
-    } */
   }
 }

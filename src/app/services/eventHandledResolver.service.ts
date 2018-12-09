@@ -1,13 +1,13 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Event} from '../_models/event';
 import {EventService} from './event.service';
-import {Injectable} from '@angular/core';
 
 @Injectable()
-export class EventResolverService implements Resolve<Event> {
+export class EventHandledResolverService implements Resolve<Event> {
   constructor(private eventService: EventService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Event> | Promise<Event> | Event {
-    return this.eventService.getSingleNewEvent(route.params['id']);
+    return this.eventService.getSingleHandledEvent(route.params['id']);
   }
 }

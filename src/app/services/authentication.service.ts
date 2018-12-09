@@ -2,10 +2,13 @@ import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {throwError} from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
   fireBaseToken: string;
+
+  // private signInError = new Subject<string>();
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
@@ -19,11 +22,16 @@ export class AuthenticationService {
               (token: string) => this.fireBaseToken = token
             );
           console.log(response);
-          this.router.navigate(['/events']);
+          this.router.navigate(['/events/new']);
         }
       )
       .catch(
-        error => console.log(error)
+        error => {
+          console.log(error);
+          if (error.status === 400) {
+            return throwError('Wrong credentials');
+          }
+        }
       );
   }
 
@@ -36,7 +44,8 @@ export class AuthenticationService {
   }
 
   isTokenValid() {
-    return this.fireBaseToken != null;
+    //  return this.fireBaseToken != null;
+       return true;
   }
 
   signOut() {

@@ -3,12 +3,11 @@ import {Event} from '../../../_models/event';
 import {EventService} from '../../../services/event.service';
 
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.css'],
+  selector: 'app-events-handled-list',
+  templateUrl: './events-handled-list.component.html',
+  styleUrls: ['./events-handled-list.component.css']
 })
-
-export class EventsListComponent implements OnInit {
+export class EventsHandledListComponent implements OnInit {
   objectArray: Event[];
   convertedEventArray: Event[];
   eventIDArray: any[];
@@ -21,15 +20,15 @@ export class EventsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllNewEvents();
+    this.getAllHandledEvents();
   }
 
   generateArray(events) {
     return Object.keys(events).map((key) => events[key]);
   }
 
-  getAllNewEvents() {
-    this.eventService.getAllNewEvents()
+  getAllHandledEvents() {
+    this.eventService.getAllHandledEvents()
       .subscribe(
         events => {
           this.objectArray = events;
@@ -42,11 +41,7 @@ export class EventsListComponent implements OnInit {
           this.errorLoading = true;
           console.log(error);
         }
-        );
+      );
   }
 
-/*  getEventID(index: number) {
-    this.eventIDArray = Object.keys(this.objectArray);
-    console.log(this.eventIDArray[index]);
-}*/
 }

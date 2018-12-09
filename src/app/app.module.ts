@@ -1,45 +1,45 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {ServerComponent} from './_components/server/server.component';
-import { UsersPageComponent } from './_components/users-page/users-page.component';
-import { EventsPageComponent } from './_components/events-page/events-page.component';
-import { EquipmentPageComponent } from './_components/equipment-page/equipment-page.component';
-import { OffendersPageComponent } from './_components/offenders-page/offenders-page.component';
-import { MainHeaderComponent } from './_components/main-header/main-header.component';
-import { SubHeaderComponent } from './_components/sub-header/sub-header.component';
-import { OffendersListComponent } from './_components/offenders-page/offenders-list/offenders-list.component';
-import { EventsListComponent } from './_components/events-page/events-list/events-list.component';
-import { EventsDetailComponent } from './_components/events-page/events-list/events-detail/events-detail.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import {environment} from '../environments/environment';
-import { EventsItemComponent } from './_components/events-page/events-list/events-item/events-item.component';
-import { NotFoundComponent } from './_components/not-found.component';
-import { SigninComponent } from './authentication/signin/signin.component';
-import { OffenderService} from './services/offender.service';
+import {UsersPageComponent} from './_components/users-page/users-page.component';
+import {EventsPageComponent} from './_components/events-page/events-page.component';
+import {EquipmentPageComponent} from './_components/equipment-page/equipment-page.component';
+import {OffendersPageComponent} from './_components/offenders-page/offenders-page.component';
+import {MainHeaderComponent} from './_components/main-header/main-header.component';
+import {SubHeaderComponent} from './_components/sub-header/sub-header.component';
+import {OffendersListComponent} from './_components/offenders-page/offenders-list/offenders-list.component';
+import {EventsListComponent} from './_components/events-page/events-list/events-list.component';
+import {EventsDetailComponent} from './_components/events-page/events-list/events-detail/events-detail.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {NotFoundComponent} from './_components/not-found.component';
+import {SigninComponent} from './authentication/signin/signin.component';
+import {OffenderService} from './services/offender.service';
 import {ValuePipe} from './value.pipe';
 import {AppRouting} from './app.routing';
-import {RouterModule} from '@angular/router';
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule, MatTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { OffendersCreateComponent } from './_components/offenders-page/offenders-create/offenders-create.component';
-import { OffenderProfileComponent } from './_components/offenders-page/offender-profile/offender-profile.component';
+import {OffendersCreateComponent} from './_components/offenders-page/offenders-create/offenders-create.component';
+import {OffenderProfileComponent} from './_components/offenders-page/offender-profile/offender-profile.component';
 import {EventService} from './services/event.service';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { LoadSpinnerComponent } from './_components/load-spinner/load-spinner.component';
+import {LoadSpinnerComponent} from './_components/load-spinner/load-spinner.component';
 import {AuthenticationService} from './services/authentication.service';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import { OffenderDetailsComponent } from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {OffenderDetailsComponent} from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
-import { OffenderEventsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
+import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {EventResolverService} from './services/eventResolver.service';
+import {EventNewResolverService} from './services/eventNewResolver.service';
+import {EventsHandledListComponent} from './_components/events-page/events-handled-list/events-handled-list.component';
+import {EventsHandledDetailsComponent} from './_components/events-page/events-handled-list/events-handled-details/events-handled-details.component';
+import {EventHandledResolverService} from './services/eventHandledResolver.service';
+import {AuthGuardService} from './authentication/authGuard.service';
 
 const config = {
   apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
@@ -62,7 +62,6 @@ const config = {
     OffendersListComponent,
     EventsListComponent,
     EventsDetailComponent,
-    EventsItemComponent,
     NotFoundComponent,
     SigninComponent,
     ValuePipe,
@@ -70,7 +69,9 @@ const config = {
     OffenderProfileComponent,
     LoadSpinnerComponent,
     OffenderDetailsComponent,
-    OffenderEventsComponent
+    OffenderEventsComponent,
+    EventsHandledListComponent,
+    EventsHandledDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -89,10 +90,19 @@ const config = {
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule
   ],
 
-  providers: [OffenderService, EventService, AuthenticationService, OffenderResolverService, EventResolverService],
+  providers: [
+    OffenderService,
+    EventService,
+    AuthenticationService,
+    OffenderResolverService,
+    EventNewResolverService,
+    EventHandledResolverService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

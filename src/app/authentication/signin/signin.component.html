@@ -1,15 +1,29 @@
-<div class="row">
-  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md offset-2">
-    <form (ngSubmit)="onSignin(f)" #f="ngForm">
-      <div class ="form-group">
-        <label for="email">Mail</label>
-        <input type="email" id="email" name="email" ngModel class="form-control">
-      </div>
-      <div class ="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" ngModel class="form-control">
-      </div>
-      <button class="btn-primary" type="submit" [disabled]="!f.valid">Sign in</button>
-    </form>
+
+<form class="formMaster" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+  <h2>Log ind med E-mail og password</h2>
+  <div class="form-group">
+    <label>
+      E-mail:
+      <input type="text" formControlName="email" email ngModel class="form-control">
+    </label>
+    <br>
+    <label>
+      Password:
+      <input type="password" formControlName="password" ngModel class="form-control">
+    </label>
   </div>
-</div>
+  <div *ngIf="invalidCrediantials">
+    <p style="color:red">Forkert E-mail eller password</p>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!signInForm.valid">Sign in</button>
+</form>
+
+<p>
+  Form Status: {{ signInForm.status }}
+  <br>
+  Form Value: {{signInForm.value}}
+</p>
+<!--DEBUG-->
+<p>Fields valid?</p>
+<pre>Email: {{signInForm.get('email').valid}}</pre>
+<pre>Password: {{signInForm.get('password').valid}}</pre>

@@ -5,14 +5,17 @@ ul.nav a:hover {
   margin-top: -21px;
 }
 .panel-primary {
-  margin-left: 5em;
+  margin-left: 3em;
   width: 30%;
 }
 .center {
-  text-align: center;
+  text-align: -webkit-right;
   margin-top: -20px;
 }
 .secondlabel {
   display: inline-block;
   text-align: left;
+}
+.btn-danger {
+  margin-left: 3em;
 }

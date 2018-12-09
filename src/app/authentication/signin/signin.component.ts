@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,15 +9,26 @@ import {AuthenticationService} from '../../services/authentication.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  invalidCrediantials = false;
 
-  constructor(private authService: AuthenticationService) { }
+  signInForm = this.fb.group({
+    email: [Validators.email],
+    password: [],
+  });
+
+  constructor(private authService: AuthenticationService, private fb: FormBuilder, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
-  onSignin(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
+  onSubmit() {
+    console.log(this.signInForm.value);
+    const email = this.signInForm.get('email').value;
+    const password = this.signInForm.get('password').value;
     this.authService.signUserIn(email, password);
+    if (!this.authService.isTokenValid()) {
+      this.invalidCrediantials = true;
+    }
   }
 }

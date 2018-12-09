@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from '@angular/router';
+import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
+import {OffenderService} from '../../../../services/offender.service';
 
 @Component({
   selector: 'app-offender-details',
@@ -12,7 +13,7 @@ export class OffenderDetailsComponent implements OnInit {
   showSpinner = true;
   errorLoading = false;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private offenderService: OffenderService) {
   }
 
   ngOnInit() {
@@ -29,6 +30,13 @@ export class OffenderDetailsComponent implements OnInit {
         }
       );
 
+  }
+
+  deleteOffender() {
+    if (confirm('Er du sikker på at du vil slette: \n ' + this.singleOffender.firstName + ' ' +
+      this.singleOffender.lastName + '\n DETTE KAN IKKE FORTYDES!')) {
+    this.offenderService.deleteOffender(this.singleOffender.offenderID);
+    }
   }
 
 }
