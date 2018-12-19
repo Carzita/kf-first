@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OffenderService} from '../../../services/offender.service';
 import {Offender} from '../../../_models/offender';
+import {faUserPlus} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-offenders-list',
@@ -12,17 +13,23 @@ export class OffendersListComponent implements OnInit {
   errorLoading = false;
   objectArray: Offender[];
   convertedOffenderArray: Offender[];
+
+  // FontAwesome icons
+  faUserPlus = faUserPlus;
+
   constructor(private offenderService: OffenderService) {
     this.objectArray = [];
     this.convertedOffenderArray = [];
   }
 
   ngOnInit() {
-      this.getAllOffenders();
+    this.getAllOffenders();
   }
-  generateArray(offenders) {
-      return Object.keys(offenders).map((key) => offenders[key]);
-}
+
+  convertResponseToArray(offenders) {
+    return Object.keys(offenders).map((key) => offenders[key]);
+  }
+
   getAllOffenders() {
     /*this.offenderService.getAllOffenders()
       .subscribe(
@@ -33,7 +40,7 @@ export class OffendersListComponent implements OnInit {
       .subscribe(
         offenders => {
           this.objectArray = offenders;
-          this.convertedOffenderArray = this.generateArray(this.objectArray);
+          this.convertedOffenderArray = this.convertResponseToArray(this.objectArray);
           console.log(this.convertedOffenderArray);
           this.showSpinner = false;
         },

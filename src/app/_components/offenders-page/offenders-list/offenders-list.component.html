@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-primary" [routerLink]="['/offenders/create']">Opret ny forbryder</button>
+<button type="button" class="btn btn-primary" [routerLink]="['/offenders/create']"><fa-icon [icon]="faUserPlus"></fa-icon> Opret ny forbryder</button>
 <table class="table table-striped table-hover">
   <app-not-found *ngIf="errorLoading"></app-not-found>
   <app-load-spinner *ngIf="showSpinner"></app-load-spinner>
   <thead>
   <tr>
-    <th>ID</th>
+    <th>CPR</th>
     <th>Fornavn</th>
     <th>Mellemnavn</th>
     <th>Efternavn</th>
@@ -13,7 +13,7 @@
   </thead>
   <tbody>
   <tr class="clickable" [routerLink]="['/offenders', Offender.offenderID, 'details']" *ngFor="let Offender of convertedOffenderArray">
-    <td>{{Offender.offenderID}}</td>
+    <td>{{ Offender.cpr }}</td>
     <td>{{ Offender.firstName }}</td>
     <td>{{ Offender.middleName }}</td>
     <td>{{ Offender.lastName }}</td>
@@ -21,7 +21,7 @@
   </tr>
   </tbody>
 </table>
-
+<!--
 <ul class="offenders">
   <li>test over ngFor med iteration af rigtig? test</li>
   <div *ngFor="let offender of convertedOffenderArray">
@@ -33,5 +33,5 @@
   <div *ngFor="let item of objectArray | keyvalue">
     <li >{{item.key}}</li>
   </div>
-</ul>
+</ul>-->
 

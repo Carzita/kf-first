@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from '../../../_models/event';
 import {EventService} from '../../../services/event.service';
+import {faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events-list',
@@ -14,6 +15,10 @@ export class EventsListComponent implements OnInit {
   eventIDArray: any[];
   showSpinner = true;
   errorLoading = false;
+
+  // FontAwesome icons
+  faExclamationCircle = faExclamationCircle;
+  faCheckCircle = faCheckCircle;
 
   constructor(private eventService: EventService) {
     this.objectArray = [];
@@ -42,11 +47,11 @@ export class EventsListComponent implements OnInit {
           this.errorLoading = true;
           console.log(error);
         }
-        );
+      );
   }
 
-/*  getEventID(index: number) {
-    this.eventIDArray = Object.keys(this.objectArray);
-    console.log(this.eventIDArray[index]);
-}*/
+  /*  getEventID(index: number) {
+      this.eventIDArray = Object.keys(this.objectArray);
+      console.log(this.eventIDArray[index]);
+  }*/
 }

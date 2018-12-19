@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Router} from '@angular/router';
+import {faSignInAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-signin',
@@ -10,10 +11,11 @@ import {Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
   invalidCrediantials = false;
+  faSignInAlt = faSignInAlt;
 
   signInForm = this.fb.group({
-    email: [Validators.email],
-    password: [],
+    email: [Validators.email, Validators.required],
+    password: [Validators.required],
   });
 
   constructor(private authService: AuthenticationService, private fb: FormBuilder, private router: Router) {
@@ -22,7 +24,7 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  signIn() {
     console.log(this.signInForm.value);
     const email = this.signInForm.get('email').value;
     const password = this.signInForm.get('password').value;

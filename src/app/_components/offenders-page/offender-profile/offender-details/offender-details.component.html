@@ -4,17 +4,14 @@
       <a class="navbar-brand"[routerLink]="['']"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/offenders', singleOffender.offenderID, 'events']">Hændelser</a>
-      </li>
-      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'details']">Oplysninger</a>
-      </li>
-      <li routerLinkActive="active"><a [routerLink]="['/offenders/:cpr/equipment']">Udstyr</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'events']"><fa-icon [icon]="faListUl"></fa-icon> Hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'details']"><fa-icon [icon]="faAddressCard"></fa-icon> Oplysninger</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders', singleOffender.offenderID,'equipment']"><fa-icon [icon]="faHdd"></fa-icon> Udstyr</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
         <p class="navbar-btn">
-          <a class="btn btn-primary" [routerLink]="['/offenders/create']"><span
-            class="far fa-arrow-alt-circle-down"></span>Opret ny forbryder</a>
+          <a class="btn btn-primary" [routerLink]="['/offenders/create']"><fa-icon [icon]="faUserPlus"></fa-icon> Opret ny forbryder</a>
         </p>
       </li>
     </ul>

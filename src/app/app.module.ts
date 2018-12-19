@@ -40,6 +40,7 @@ import {EventsHandledListComponent} from './_components/events-page/events-handl
 import {EventsHandledDetailsComponent} from './_components/events-page/events-handled-list/events-handled-details/events-handled-details.component';
 import {EventHandledResolverService} from './services/eventHandledResolver.service';
 import {AuthGuardService} from './authentication/authGuard.service';
+import { OffenderEquipmentComponent } from './_components/offenders-page/offender-profile/offender-equipment/offender-equipment.component';
 
 const config = {
   apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
@@ -71,7 +72,8 @@ const config = {
     OffenderDetailsComponent,
     OffenderEventsComponent,
     EventsHandledListComponent,
-    EventsHandledDetailsComponent
+    EventsHandledDetailsComponent,
+    OffenderEquipmentComponent
   ],
   imports: [
     BrowserModule,

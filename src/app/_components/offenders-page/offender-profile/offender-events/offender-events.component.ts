@@ -3,6 +3,7 @@ import {ActivatedRoute, Data} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
 import {Event} from '../../../../_models/event';
+import {faListUl, faAddressCard, faUserPlus, faHdd} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-offender-events',
@@ -15,6 +16,12 @@ export class OffenderEventsComponent implements OnInit {
   convertedEventArray: Event[];
   showSpinner = true;
   errorLoading = false;
+
+  // icons for sub navigation bar
+  faListUl = faListUl;
+  faAddressCard = faAddressCard;
+  faUserPlus = faUserPlus;
+  faHdd = faHdd;
 
   constructor(private route: ActivatedRoute, private offenderService: OffenderService) {
     this.objectArray = [];

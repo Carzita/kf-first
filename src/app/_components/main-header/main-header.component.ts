@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
-import {faSignInAlt} from '@fortawesome/free-solid-svg-icons';
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import {faSignInAlt, faSignOutAlt, faUsers, faListUl, faHdd} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main-header',
@@ -9,8 +8,12 @@ import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./main-header.component.css']
 })
 export class MainHeaderComponent implements OnInit {
+  // icons from FontAwesome declaration
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
+  faUsers = faUsers;
+  faListUl = faListUl;
+  faHdd = faHdd;
 
   constructor(private authenticationService: AuthenticationService) {
   }

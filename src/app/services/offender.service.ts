@@ -69,7 +69,9 @@ export class OffenderService {
         'offenderID': offenderID
       })
       .subscribe( // log the result or error
-        data => console.log(data),
+        data => {console.log(data);
+          this.router.navigate(['/offenders']);
+        },
         error => console.log(error));
   }
 
@@ -92,4 +94,5 @@ export class OffenderService {
         },
         error => console.log(error));
   }
+
 }

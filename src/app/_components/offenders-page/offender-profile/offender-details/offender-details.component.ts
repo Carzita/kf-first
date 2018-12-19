@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
+import {faAddressCard, faListUl, faUserPlus, faHdd} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-offender-details',
@@ -12,6 +13,12 @@ export class OffenderDetailsComponent implements OnInit {
   singleOffender: Offender;
   showSpinner = true;
   errorLoading = false;
+
+  // icons for sub navigation bar
+  faListUl = faListUl;
+  faAddressCard = faAddressCard;
+  faUserPlus = faUserPlus;
+  faHdd = faHdd;
 
   constructor(private route: ActivatedRoute, private offenderService: OffenderService) {
   }
