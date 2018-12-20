@@ -9,7 +9,6 @@ import {ActivatedRoute, Data} from '@angular/router';
 })
 export class EventsHandledDetailsComponent implements OnInit {
   singleEvent: Event;
-  showSpinner = true;
   errorLoading = false;
 
   constructor(private route: ActivatedRoute) {
@@ -20,11 +19,9 @@ export class EventsHandledDetailsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleEvent = data['event'];
-          this.showSpinner = false;
         },
         error => {
           console.log(error);
-          this.showSpinner = false;
           this.errorLoading = true;
         }
       );

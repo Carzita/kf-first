@@ -31,11 +31,6 @@ export class OffendersListComponent implements OnInit {
   }
 
   getAllOffenders() {
-    /*this.offenderService.getAllOffenders()
-      .subscribe(
-        (offender: any[] => console.log(offender),
-        (error) => console.log(error)
-      ); */
     this.offenderService.getAllOffenders()
       .subscribe(
         offenders => {

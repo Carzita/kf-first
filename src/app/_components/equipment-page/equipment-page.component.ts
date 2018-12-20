@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-equipment-page',
@@ -7,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class EquipmentPageComponent implements OnInit {
-
-  constructor() { }
+  constructor() {
+  }
+  time2 = this.getRealTimeStamp();
 
   ngOnInit() {
+  }
+
+  getRealTimeStamp() {
+    const d = new Date();
+    const dato = d.getDate();
+    const month = d.getMonth();
+    const year = d.getFullYear();
+    const hour = d.getHours();
+    const minutes = d.getMinutes();
+    return dato + '-' + month + '-' + year + ' ' + hour + '-' + minutes;
   }
 
 }

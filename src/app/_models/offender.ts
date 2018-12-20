@@ -7,9 +7,12 @@ export class Offender {
   public address: string;
   public city: string;
   public zip: string;
+  public startDate: string;
+  public endDate: string;
+  public comments: object;
 
   constructor(offenderID: string, cpr: string, firstName: string, middleName: string, lastName: string,
-              address: string, city: string, zip: string) {
+              address: string, city: string, zip: string, startDate: string, endDate: string, comments: object) {
     this.offenderID = offenderID;
     this.cpr = cpr;
     this.firstName = firstName;
@@ -18,5 +21,8 @@ export class Offender {
     this.address = address;
     this.city = city;
     this.zip = zip;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.comments = comments;
   }
 }

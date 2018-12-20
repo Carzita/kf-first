@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Event} from '../../../_models/event';
 import {EventService} from '../../../services/event.service';
+import {faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events-handled-list',
@@ -13,6 +14,10 @@ export class EventsHandledListComponent implements OnInit {
   eventIDArray: any[];
   showSpinner = true;
   errorLoading = false;
+
+  // declaration of FontAwesome icons
+  faExclamationCircle = faExclamationCircle;
+  faCheckCircle = faCheckCircle;
 
   constructor(private eventService: EventService) {
     this.objectArray = [];

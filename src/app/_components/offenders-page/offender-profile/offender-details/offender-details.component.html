@@ -19,8 +19,8 @@
   <div></div>
 </nav>
 <app-not-found *ngIf="errorLoading"></app-not-found>
-<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
 
+<div class="left-container">
 <div class="panel panel-primary">
   <div class="panel-heading">Grundinformation</div>
   <div class="panel-body">
@@ -37,6 +37,7 @@
     </div>
   </div>
 </div>
+
 <div class="panel panel-primary">
   <div class="panel-heading">Bolig information</div>
   <div class="panel-body">
@@ -54,5 +55,65 @@
     </div>
   </div>
 </div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Overvågnings oplysninger</div>
+  <div class="panel-body">
+    <div>
+      <span class="firstlabel">Startdato:</span>
+    </div>
+    <div class="center">
+      <span class="secondlabel">{{singleOffender.startDate}}</span>
+    </div>
+  </div>
+  <div class="panel-body">
+    <span class="firstlabel">Slutdato: </span>
+    <div class="center">
+      <span class="secondlabel">{{singleOffender.endDate}}</span>
+    </div>
+  </div>
+</div>
+
 <button type="submit" class="btn btn-danger" (click)=deleteOffender()>Slet denne forbryder</button>
+</div>
+
+<div class="right-container">
+  <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md offset-2">-->
+  <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+    <div class="form-group">
+      <label>
+        Tilføj bemærkelse / kommentar:
+        <input id="comment" type="text" formControlName="comment" required ngModel class="form-control">
+        <div *ngIf="commentForm.get('comment').invalid && (commentForm.get('comment').dirty || commentForm.get('comment').touched)"
+             class="alert alert-danger">Kommentar må ikke være tom</div>
+      </label>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid">Tilføj bemærkelse/kommentar</button>
+  </form>
+<br>
+  <div class="panel panel-primary" *ngIf="!noComments">
+    <div class="panel-heading">Kommentarer</div>
+    <div class="panel-body" *ngFor="let comments of convertedCommentArray">
+      <div>
+        <span class="firstlabel">{{comments.timeStamp}}</span>
+      </div>
+      <div class="center">
+        <span class="secondlabel">{{comments.comment}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-primary" *ngIf="noComments">
+    <div class="panel-heading">Kommentarer</div>
+    <div class="panel-body">
+      <div>
+        <span class="firstlabel">Der er ingen kommentarer tilknyttet denne forbryder</span>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
 

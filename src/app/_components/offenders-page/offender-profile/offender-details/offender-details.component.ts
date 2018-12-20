@@ -3,6 +3,9 @@ import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
 import {faAddressCard, faListUl, faUserPlus, faHdd} from '@fortawesome/free-solid-svg-icons';
+import {FormBuilder, Validators} from '@angular/forms';
+import {OffenderComment} from '../../../../_models/offenderComment';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-offender-details',
@@ -10,9 +13,12 @@ import {faAddressCard, faListUl, faUserPlus, faHdd} from '@fortawesome/free-soli
   styleUrls: ['./offender-details.component.css']
 })
 export class OffenderDetailsComponent implements OnInit {
+
   singleOffender: Offender;
-  showSpinner = true;
   errorLoading = false;
+  convertedCommentArray: OffenderComment[];
+  objectArray: OffenderComment[];
+  noComments = false;
 
   // icons for sub navigation bar
   faListUl = faListUl;
@@ -20,7 +26,23 @@ export class OffenderDetailsComponent implements OnInit {
   faUserPlus = faUserPlus;
   faHdd = faHdd;
 
-  constructor(private route: ActivatedRoute, private offenderService: OffenderService) {
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private offenderService: OffenderService) {
+    this.convertedCommentArray = [];
+    this.objectArray = [];
+  }
+
+  commentForm = this.fb.group({
+    comment: [Validators.required],
+ });
+
+   static getTimeStamp() {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    return day + '-' + month + '-' + year + ' ' + hour + ':' + minutes;
   }
 
   ngOnInit() {
@@ -28,11 +50,15 @@ export class OffenderDetailsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
-          this.showSpinner = false;
+          if (this.singleOffender.comments != null) {
+            this.convertedCommentArray = this.convertResponseToArray(this.singleOffender.comments);
+            console.log(this.convertedCommentArray);
+          } else {
+            this.noComments = true;
+          }
         },
         error => {
           console.log(error);
-          this.showSpinner = false;
           this.errorLoading = true;
         }
       );
@@ -42,8 +68,39 @@ export class OffenderDetailsComponent implements OnInit {
   deleteOffender() {
     if (confirm('Er du sikker på at du vil slette: \n ' + this.singleOffender.firstName + ' ' +
       this.singleOffender.lastName + '\n DETTE KAN IKKE FORTYDES!')) {
-    this.offenderService.deleteOffender(this.singleOffender.offenderID);
+      this.offenderService.deleteOffender(this.singleOffender.offenderID);
     }
+  }
+
+  addComment() {
+    const comment = this.commentForm.get('comment').value;
+    this.offenderService.addOffenderComment(comment, OffenderDetailsComponent.getTimeStamp(), this.singleOffender.offenderID)
+      .subscribe(
+        comments => {
+          console.log(comments);
+          this.updateComments();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  convertResponseToArray(comments) {
+    return Object.keys(comments).map((key) => comments[key]);
+  }
+
+  updateComments() {
+    console.log('pis lort');
+     this.offenderService.getAllOffenderComments(this.singleOffender.offenderID)
+      .subscribe(
+        comments => {
+          this.objectArray = comments;
+          this.convertedCommentArray = this.convertResponseToArray(this.objectArray);
+          console.log(this.convertedCommentArray);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }

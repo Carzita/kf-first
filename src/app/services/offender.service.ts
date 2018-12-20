@@ -6,6 +6,7 @@ import {Observable, pipe, Subscription} from 'rxjs';
 import {Event} from '../_models/event';
 import {AuthenticationService} from './authentication.service';
 import {Router} from '@angular/router';
+import {OffenderComment} from '../_models/offenderComment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,8 +18,6 @@ const httpOptions = {
 @Injectable()
 export class OffenderService {
   responseConvertArray: any[];
-
-  // offendersChanged = new EventEmitter<T>();
 
   constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService, private router: Router) {
   }
@@ -47,7 +46,7 @@ export class OffenderService {
       );
   }
 
-  // add an  offender to Firebase
+  // add an offender to Firebase
   addOffender(offender: Offender): Observable<Offender> {
     return this.httpClient.post<Offender>('https://iokrf-3d980.firebaseio.com/offenders/.json', offender)
       .pipe(
@@ -69,12 +68,38 @@ export class OffenderService {
         'offenderID': offenderID
       })
       .subscribe( // log the result or error
-        data => {console.log(data);
+        data => {
+          console.log(data);
           this.router.navigate(['/offenders']);
         },
         error => console.log(error));
   }
 
+  addOffenderComment(offenderComment: string, timeStamp: string, offenderID: string): Observable<any> {
+    return this.httpClient.post('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '/comments.json',
+      {
+        'comment': offenderComment,
+        'timeStamp': timeStamp
+      })
+      .pipe(map( // log the result or error
+        data => {
+          console.log(data);
+          console.log('comment inserted');
+        },
+        error => console.log(error)));
+  }
+
+  // retrieve all offenders comments in FireBase
+  getAllOffenderComments(offenderID: string): Observable<OffenderComment[]> {
+    return this.httpClient.get<OffenderComment[]>('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '/comments.json')
+      .pipe(
+        tap( // log the result or error
+          data => console.log(data),
+          error => console.log(error))
+      );
+  }
+
+  // retrieve an offender's unresolved events
   getOffenderNewEvents(id: string): Observable<Event[]> {
     return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '/zzevents/newEvents.json')
     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
@@ -85,6 +110,7 @@ export class OffenderService {
       );
   }
 
+  // delete an offender
   deleteOffender(offenderID: string) {
     return this.httpClient.delete('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json')
       .subscribe( // log the result or error
