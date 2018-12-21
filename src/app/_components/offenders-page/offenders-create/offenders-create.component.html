@@ -11,7 +11,7 @@
           CPR*:
           <input id="cpr" type="text" formControlName="cpr" required pattern="[0-3][0-9][0-1][1-9]\d{2}-\d{4}?[^0-9]*" ngModel class="form-control">
             <div *ngIf="offendersForm.get('cpr').invalid && (offendersForm.get('cpr').dirty || offendersForm.get('cpr').touched)"
-            class="alert alert-danger">CPR skal være på form xxxxxx-xxxx</div>
+            class="alert alert-danger">CPR skal være på form ddmmyy-xxxx</div>
         </label>
         <br>
         <label>

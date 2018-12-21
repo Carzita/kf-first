@@ -7,7 +7,6 @@
       <li routerLinkActive="active"><a [routerLink]="['/events/new']"><fa-icon [icon]="faListUl"></fa-icon> Hændelser</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/offenders']"><fa-icon [icon]="faUsers"></fa-icon> Forbryderer</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/equipment']"><fa-icon [icon]="faHdd"></fa-icon> Udstyr</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/users']">Slet Brugere</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="!authenticationService.isTokenValid()"><a [routerLink]="['/signin']"><fa-icon [icon]="faSignInAlt"></fa-icon> Log ind</a></li>

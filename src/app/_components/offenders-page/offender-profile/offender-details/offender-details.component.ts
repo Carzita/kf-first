@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
-import {faAddressCard, faListUl, faUserPlus, faHdd} from '@fortawesome/free-solid-svg-icons';
+import {faAddressCard, faListUl, faUserPlus, faHdd, faUserMinus, faComment} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, Validators} from '@angular/forms';
 import {OffenderComment} from '../../../../_models/offenderComment';
 import {Observable, Subscription} from 'rxjs';
@@ -25,6 +25,8 @@ export class OffenderDetailsComponent implements OnInit {
   faAddressCard = faAddressCard;
   faUserPlus = faUserPlus;
   faHdd = faHdd;
+  faUserMinus = faUserMinus;
+  faComment = faComment;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private offenderService: OffenderService) {
     this.convertedCommentArray = [];
@@ -40,7 +42,7 @@ export class OffenderDetailsComponent implements OnInit {
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
-    const hour = date.getHours();
+    const hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
     const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
     return day + '-' + month + '-' + year + ' ' + hour + ':' + minutes;
   }

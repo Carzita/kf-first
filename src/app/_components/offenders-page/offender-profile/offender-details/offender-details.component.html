@@ -74,7 +74,7 @@
   </div>
 </div>
 
-<button type="submit" class="btn btn-danger" (click)=deleteOffender()>Slet denne forbryder</button>
+<button type="submit" class="btn btn-danger" (click)=deleteOffender()><fa-icon [icon]="faUserMinus"></fa-icon>  Slet denne forbryder</button>
 </div>
 
 <div class="right-container">
@@ -84,11 +84,9 @@
       <label>
         Tilføj bemærkelse / kommentar:
         <input id="comment" type="text" formControlName="comment" required ngModel class="form-control">
-        <div *ngIf="commentForm.get('comment').invalid && (commentForm.get('comment').dirty || commentForm.get('comment').touched)"
-             class="alert alert-danger">Kommentar må ikke være tom</div>
       </label>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid">Tilføj bemærkelse/kommentar</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid"><fa-icon [icon]="faComment"></fa-icon>  Tilføj bemærkelse/kommentar</button>
   </form>
 <br>
   <div class="panel panel-primary" *ngIf="!noComments">

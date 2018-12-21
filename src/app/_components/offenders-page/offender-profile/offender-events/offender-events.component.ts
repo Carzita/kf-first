@@ -15,6 +15,7 @@ export class OffenderEventsComponent implements OnInit {
   objectArray: Event[];
   convertedEventArray: Event[];
   errorLoading = false;
+  noEvents = false;
 
   // icons for sub navigation bar
   faListUl = faListUl;
@@ -32,13 +33,13 @@ export class OffenderEventsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
+          this.getOffenderNewEvents();
         },
         error => {
           this.errorLoading = true;
           console.log(error);
         }
       );
-    this.getOffenderNewEvents();
   }
 
   generateArray(events) {
@@ -49,8 +50,12 @@ export class OffenderEventsComponent implements OnInit {
     this.offenderService.getOffenderNewEvents(this.singleOffender.cpr)
       .subscribe(
         events => {
-          this.objectArray = events;
-          this.convertedEventArray = this.generateArray(this.objectArray);
+          if (events != null) {
+            this.objectArray = events;
+            this.convertedEventArray = this.generateArray(this.objectArray);
+          } else {
+            this.noEvents = true;
+          }
         });
   }
 

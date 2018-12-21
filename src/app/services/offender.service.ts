@@ -25,7 +25,6 @@ export class OffenderService {
   // retrieve all Offenders in FireBase
   getAllOffenders(): Observable<Offender[]> {
     // const fireBaseToken = this.authenticationService.getAuthToken();
-    // return this.httpClient.get<Offender[]>('https://localhost:44330/api/offender')
     return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json')
     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
       .pipe(
@@ -83,8 +82,8 @@ export class OffenderService {
       })
       .pipe(map( // log the result or error
         data => {
-          console.log(data);
           console.log('comment inserted');
+          console.log(data);
         },
         error => console.log(error)));
   }
@@ -101,7 +100,7 @@ export class OffenderService {
 
   // retrieve an offender's unresolved events
   getOffenderNewEvents(id: string): Observable<Event[]> {
-    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '/zzevents/newEvents.json')
+    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '/events/newEvents.json')
     // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
       .pipe(
         tap( // log the result or error

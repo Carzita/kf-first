@@ -28,7 +28,7 @@
     <th>Tidspunkt</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="!noEvents">
   <tr class="clickable" [routerLink]="['/offendersprofile']" *ngFor="let Event of convertedEventArray"  >
     <td>{{ Event.firstName }} {{Event.middleName}} {{Event.lastName}}</td>
     <td>{{ Event.eventType }}</td>
@@ -36,3 +36,6 @@
   </tr>
   </tbody>
 </table>
+<div class="h2">
+<h2 *ngIf="noEvents">Ingen hændelser for denne forbryder</h2>
+</div>
