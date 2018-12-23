@@ -3,16 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Event} from '../_models/event';
 import {tap, timeout} from 'rxjs/operators';
+import {AuthenticationService} from './authentication.service';
 
 @Injectable()
 export class EventService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) {}
 
   getAllNewEvents(): Observable<Event[]> {
-    // const fireBaseToken = this.authGuard.getToken();
-    // return this.httpClient.get<Event[]>('https://localhost:44330/api/event')
-    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/events/newEvents.json')
-    // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
+    const fireBaseToken = this.authenticationService.getAuthToken();
+    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/events/newEvents.json?auth=' + fireBaseToken)
       .pipe(
         tap ( // log the result or error
           data => console.log(data),
@@ -21,10 +20,8 @@ export class EventService {
   }
 
   getAllHandledEvents(): Observable<Event[]> {
-    // const fireBaseToken = this.authGuard.getToken();
-    // return this.httpClient.get<Event[]>('https://localhost:44330/api/event')
-    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/events/handledEvents.json')
-    // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
+    const fireBaseToken = this.authenticationService.getAuthToken();
+    return this.httpClient.get<Event[]>('https://iokrf-3d980.firebaseio.com/events/handledEvents.json?auth=' + fireBaseToken )
       .pipe(
         tap ( // log the result or error
           data => console.log(data),
@@ -33,7 +30,8 @@ export class EventService {
   }
 
   getSingleNewEvent(id: string): Observable<Event> {
-    return this.httpClient.get<Event>('https://iokrf-3d980.firebaseio.com/events/newEvents/' + id + '.json')
+    const fireBaseToken = this.authenticationService.getAuthToken();
+    return this.httpClient.get<Event>('https://iokrf-3d980.firebaseio.com/events/newEvents/' + id + '.json?auth=' + fireBaseToken)
       .pipe(
         tap( // log the result or error
           data => console.log(data),
@@ -42,7 +40,8 @@ export class EventService {
   }
 
   getSingleHandledEvent(id: string): Observable<Event> {
-    return this.httpClient.get<Event>('https://iokrf-3d980.firebaseio.com/events/handledEvents/' + id + '.json')
+    const fireBaseToken = this.authenticationService.getAuthToken();
+    return this.httpClient.get<Event>('https://iokrf-3d980.firebaseio.com/events/handledEvents/' + id + '.json?auth=' + fireBaseToken)
       .pipe(
         tap( // log the result or error
           data => console.log(data),

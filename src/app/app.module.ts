@@ -35,6 +35,9 @@ import {EventsHandledDetailsComponent} from './_components/events-page/events-ha
 import {EventHandledResolverService} from './services/eventHandledResolver.service';
 import {AuthGuardService} from './services/authGuard.service';
 import { OffenderEquipmentComponent } from './_components/offenders-page/offender-profile/offender-equipment/offender-equipment.component';
+import { OffenderHandledEventsComponent } from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-events.component';
+import { OffenderEventDetailsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-event-details/offender-event-details.component';
+import { OffenderHandledEventDetailComponent } from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-event-detail/offender-handled-event-detail.component';
 
 const config = {
   apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
@@ -63,7 +66,10 @@ const config = {
     OffenderEventsComponent,
     EventsHandledListComponent,
     EventsHandledDetailsComponent,
-    OffenderEquipmentComponent
+    OffenderEquipmentComponent,
+    OffenderHandledEventsComponent,
+    OffenderEventDetailsComponent,
+    OffenderHandledEventDetailComponent
   ],
   imports: [
     BrowserModule,

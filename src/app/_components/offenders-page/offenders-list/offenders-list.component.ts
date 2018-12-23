@@ -26,10 +26,6 @@ export class OffendersListComponent implements OnInit {
     this.getAllOffenders();
   }
 
-  convertResponseToArray(offenders) {
-    return Object.keys(offenders).map((key) => offenders[key]);
-  }
-
   getAllOffenders() {
     this.offenderService.getAllOffenders()
       .subscribe(
@@ -44,5 +40,9 @@ export class OffendersListComponent implements OnInit {
           this.errorLoading = true;
           console.log(error);
         });
+  }
+ // converts the response object into an array
+  convertResponseToArray(offenders) {
+    return Object.keys(offenders).map((key) => offenders[key]);
   }
 }

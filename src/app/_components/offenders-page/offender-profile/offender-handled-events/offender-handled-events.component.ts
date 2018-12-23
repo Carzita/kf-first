@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import {Offender} from '../../../../_models/offender';
-import {OffenderService} from '../../../../services/offender.service';
 import {Event} from '../../../../_models/event';
-import {faAddressCard, faUserPlus, faHdd, faCheckCircle, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
+import {faAddressCard, faCheckCircle, faExclamationCircle, faHdd, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {ActivatedRoute, Data} from '@angular/router';
+import {OffenderService} from '../../../../services/offender.service';
 
 @Component({
-  selector: 'app-offender-events',
-  templateUrl: './offender-events.component.html',
-  styleUrls: ['./offender-events.component.css']
+  selector: 'app-offender-handled-events',
+  templateUrl: './offender-handled-events.component.html',
+  styleUrls: ['./offender-handled-events.component.css']
 })
-export class OffenderEventsComponent implements OnInit {
+export class OffenderHandledEventsComponent implements OnInit {
   singleOffender: Offender;
   objectArray: Event[];
   eventArray: Event[];
@@ -35,9 +35,9 @@ export class OffenderEventsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
-          if (this.singleOffender.newEvents != null) {
-            this.eventIDArray = Object.keys(this.singleOffender.newEvents);
-            this.eventArray = this.convertResponseToArray(this.singleOffender.newEvents);
+          if (this.singleOffender.handledEvents != null) {
+            this.eventIDArray = Object.keys(this.singleOffender.handledEvents);
+            this.eventArray = this.convertResponseToArray(this.singleOffender.handledEvents);
             console.log(this.eventArray);
           } else {
             this.noEvents = true;
@@ -54,9 +54,8 @@ export class OffenderEventsComponent implements OnInit {
     return Object.keys(events).map((key) => events[key]);
   }
 
-  // to be used when web sockets are implemented in a back-end
-  getOffenderNewEvents() {
-    this.offenderService.getOffenderNewEvents(this.singleOffender.cpr)
+  updateOffenderHandledEvents() {
+    this.offenderService.getOffenderHandledEvents(this.singleOffender.cpr)
       .subscribe(
         events => {
           if (events != null) {

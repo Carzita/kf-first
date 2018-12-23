@@ -4,7 +4,8 @@
       <a class="navbar-brand"[routerLink]="['']"></a>
     </div>
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'events']"><fa-icon [icon]="faListUl"></fa-icon> Hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'newEvents']"><fa-icon [icon]="faExclamationCircle"></fa-icon> Nye hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'handledEvents']"><fa-icon [icon]="faCheckCircle"></fa-icon> Behandlede hændelser</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/offenders',singleOffender.offenderID,'details']"><fa-icon [icon]="faAddressCard"></fa-icon> Oplysninger</a></li>
       <li routerLinkActive="active"><a [routerLink]="['/offenders', singleOffender.offenderID,'equipment']"><fa-icon [icon]="faHdd"></fa-icon> Udstyr</a></li>
     </ul>
@@ -93,7 +94,7 @@
     <div class="panel-heading">Kommentarer</div>
     <div class="panel-body" *ngFor="let comments of convertedCommentArray">
       <div>
-        <span class="firstlabel">{{comments.timeStamp}}</span>
+        <span class="firstlabel">{{comments.time}}</span>
       </div>
       <div class="center">
         <span class="secondlabel">{{comments.comment}}</span>

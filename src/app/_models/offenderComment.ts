@@ -1,9 +1,9 @@
 export class OffenderComment {
   public comment: string;
-  public timeStamp: string;
+  public time: string;
 
-  constructor(comment: string, timeStamp: string) {
+  constructor(comment: string, time: string) {
     this.comment = comment;
-    this.timeStamp = timeStamp;
+    this.time = time;
   }
 }

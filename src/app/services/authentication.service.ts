@@ -44,9 +44,8 @@ export class AuthenticationService {
   }
 
   isTokenValid() {
-     //  return this.fireBaseToken != null;
-    // return firebase.auth().currentUser != null;
-     return true;
+    return firebase.auth().currentUser != null;
+    // return true;
   }
 
   signOut() {

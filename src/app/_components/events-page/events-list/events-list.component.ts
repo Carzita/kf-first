@@ -37,7 +37,9 @@ export class EventsListComponent implements OnInit {
       .subscribe(
         events => {
           this.objectArray = events;
+          // this is needed for routing to identify the ID of chosen event
           this.eventIDArray = Object.keys(this.objectArray);
+          // converting the array
           this.convertedEventArray = this.generateArray(this.objectArray);
         },
         error => {

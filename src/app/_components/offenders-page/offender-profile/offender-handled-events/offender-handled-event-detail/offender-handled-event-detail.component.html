@@ -1,0 +1,36 @@
+<div class="right-container">
+  <app-load-spinner *ngIf="showSpinner"></app-load-spinner>
+  <app-not-found *ngIf="errorLoading"></app-not-found>
+  <div *ngIf="!showSpinner">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Forbryderinformation</div>
+      <div class="panel-body">
+        <span class="firstlabel">Forbryder CPR:</span>
+        <div class="center">
+          <span class="secondlabel">{{singleEvent.cpr}}</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <span class="firstlabel">Forbryder navn</span>
+        <div class="center">
+          <span class="secondlabel">{{singleEvent.firstName}} {{singleEvent.middleName}} {{singleEvent.lastName}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Begivenhedsinformation</div>
+      <div class="panel-body">
+        <span class="firstlabel">Begivenhedstype:</span>
+        <div class="center">
+          <span class="secondlabel">{{singleEvent.eventType}}</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <span class="firstlabel">Tidspunkt:</span>
+        <div class="center">
+          <span class="secondlabel">{{singleEvent.time}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

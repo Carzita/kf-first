@@ -1,0 +1,12 @@
+.panel {
+  width: 100%;
+  right: 0;
+  display: flow;
+  margin-left: auto;
+}
+
+.right-container {
+  float: right;
+  width: 49%;
+  margin-right: 1em;
+}

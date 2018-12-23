@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
-import {faAddressCard, faListUl, faUserPlus, faHdd, faUserMinus, faComment} from '@fortawesome/free-solid-svg-icons';
+import {faAddressCard, faUserPlus, faHdd, faUserMinus,
+  faComment, faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, Validators} from '@angular/forms';
 import {OffenderComment} from '../../../../_models/offenderComment';
 import {Observable, Subscription} from 'rxjs';
@@ -21,12 +22,13 @@ export class OffenderDetailsComponent implements OnInit {
   noComments = false;
 
   // icons for sub navigation bar
-  faListUl = faListUl;
   faAddressCard = faAddressCard;
   faUserPlus = faUserPlus;
   faHdd = faHdd;
   faUserMinus = faUserMinus;
   faComment = faComment;
+  faExclamationCircle = faExclamationCircle;
+  faCheckCircle = faCheckCircle;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private offenderService: OffenderService) {
     this.convertedCommentArray = [];
@@ -79,7 +81,6 @@ export class OffenderDetailsComponent implements OnInit {
     this.offenderService.addOffenderComment(comment, OffenderDetailsComponent.getTimeStamp(), this.singleOffender.offenderID)
       .subscribe(
         comments => {
-          console.log(comments);
           this.updateComments();
         },
         error => {
