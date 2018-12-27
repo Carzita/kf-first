@@ -8,23 +8,18 @@ import {Offender} from '../../../_models/offender';
   styleUrls: ['./offender-profile.component.css']
 })
 export class OffenderProfileComponent implements OnInit {
-  someOffender: Offender;
-  constructor(private route: ActivatedRoute, private justRouter: Router ) {
+  singleOffender: Offender;
+  constructor(private route: ActivatedRoute ) {
   }
 
   ngOnInit() {
 /*        this.route.data
           .subscribe(
             (data: Data) => {
-              this.someOffender = data['offender'];
-            }
-          );*/
-    /*    this.route.params
-          .subscribe(
-            (params: Params) => {
-              this.someShit = params['cpr'];
-            }
-          ); */
-
+              this.singleOffender = data['offender'];
+            },
+            (error: Error) => {
+              console.log (error);
+            } );*/
   }
 }

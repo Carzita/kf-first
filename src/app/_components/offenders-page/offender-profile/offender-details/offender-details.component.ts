@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Offender} from '../../../../_models/offender';
 import {OffenderService} from '../../../../services/offender.service';
-import {faAddressCard, faUserPlus, faHdd, faUserMinus,
-  faComment, faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {
+  faAddressCard, faUserPlus, faHdd, faUserMinus,
+  faComment, faExclamationCircle, faCheckCircle
+} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, Validators} from '@angular/forms';
 import {OffenderComment} from '../../../../_models/offenderComment';
 import {Observable, Subscription} from 'rxjs';
@@ -37,9 +39,9 @@ export class OffenderDetailsComponent implements OnInit {
 
   commentForm = this.fb.group({
     comment: [Validators.required],
- });
+  });
 
-   static getTimeStamp() {
+  static getTimeStamp() {
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth();
@@ -89,7 +91,10 @@ export class OffenderDetailsComponent implements OnInit {
   }
 
   updateComments() {
-     this.offenderService.getAllOffenderComments(this.singleOffender.offenderID)
+    if (this.noComments === true) {
+      this.noComments = false;
+    }
+    this.offenderService.getAllOffenderComments(this.singleOffender.offenderID)
       .subscribe(
         comments => {
           this.objectArray = comments;
@@ -100,6 +105,7 @@ export class OffenderDetailsComponent implements OnInit {
           console.log(error);
         });
   }
+
 // converts the response object into an array
   convertResponseToArray(comments) {
     return Object.keys(comments).map((key) => comments[key]);

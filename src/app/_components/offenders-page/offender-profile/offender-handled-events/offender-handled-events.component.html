@@ -30,6 +30,7 @@
   </tr>
   </thead>
   <tbody>
+  <!--<tr class="clickable" [routerLink]="[eventIDArray[x], 'details']" *ngFor="let Event of eventArray; let x = index;">-->
   <tr class="clickable" [routerLink]="[singleOffender.offenderID, 'details']" *ngFor="let Event of eventArray">
     <td>{{ Event.firstName }} {{Event.middleName}} {{Event.lastName}}</td>
     <td>{{ Event.eventType }}</td>
@@ -38,6 +39,7 @@
   </tbody>
 </table>
 <div class="h2">
-  <h2 *ngIf="noEvents">Ingen behandlede hændelser for denne forbryder</h2>
+  <h2 *ngIf="noEvents">Ingen nye hændelser for denne forbryder</h2>
 </div>
+
 <router-outlet></router-outlet>

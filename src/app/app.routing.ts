@@ -11,14 +11,14 @@ import {OffenderDetailsComponent} from './_components/offenders-page/offender-pr
 import {OffenderResolverService} from './services/offenderResolver.service';
 import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
 import {EventsDetailComponent} from './_components/events-page/events-detail/events-detail.component';
-import {EventNewResolverService} from './services/eventNewResolver.service';
 import {EventsHandledListComponent} from './_components/events-page/events-handled-list/events-handled-list.component';
-import {EventHandledResolverService} from './services/eventHandledResolver.service';
+import {EventDetailsResolverService} from './services/eventDetailsResolver.service';
 import {AuthGuardService} from './services/authGuard.service';
 import {OffenderEquipmentComponent} from './_components/offenders-page/offender-profile/offender-equipment/offender-equipment.component';
 import {OffenderHandledEventsComponent} from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-events.component';
 import {OffenderEventDetailsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-event-details/offender-event-details.component';
 import {EventsListComponent} from './_components/events-page/events-list/events-list.component';
+import {HandledEventDetailsComponent} from './_components/offenders-page/offender-profile/offender-handled-events/handled-event-details/handled-event-details.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/events/new', canActivate: [AuthGuardService], pathMatch: 'full'},
@@ -26,12 +26,12 @@ const appRoutes: Routes = [
     path: 'events', component: EventsPageComponent, canActivate: [AuthGuardService], children: [
       {
         path: 'new', component: EventsListComponent, canActivate: [AuthGuardService], children: [
-          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventNewResolverService}}
+          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventDetailsResolverService}}
         ]
       },
       {
         path: 'handled', component: EventsHandledListComponent, canActivate: [AuthGuardService], children: [
-          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventHandledResolverService}}
+          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventDetailsResolverService}}
         ]
       },
     ]
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
       },
       {
         path: ':id/handledEvents', component: OffenderHandledEventsComponent, resolve: {offender: OffenderResolverService}, children: [
-          {path: ':id/details', component: OffenderEventDetailsComponent, resolve: {offender: OffenderResolverService}}]
+          {path: ':id/details', component: HandledEventDetailsComponent, resolve: {offender: OffenderResolverService}}]
       },
       {path: ':id/equipment', component: OffenderEquipmentComponent, resolve: {offender: OffenderResolverService}}
     ]

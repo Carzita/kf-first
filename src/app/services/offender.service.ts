@@ -52,7 +52,7 @@ export class OffenderService {
         tap( // log the result or error
           data => {
             this.responseConvertArray = Object.keys(data).map((key) => data[key]);
-            this.insertOffenderID(this.responseConvertArray[0]);
+            this.insertOffenderID(this.responseConvertArray[0], fireBaseToken);
           },
           error => {
             console.log(error);
@@ -61,8 +61,8 @@ export class OffenderService {
   }
 
   // after adding offender in the above method, the offenderID is added as a property of the offender so it is easily accessed
-  insertOffenderID(offenderID: string) {
-    const fireBaseToken = this.authenticationService.getAuthToken();
+  insertOffenderID(offenderID: string, fireBaseToken: string) {
+   // const fireBaseToken = this.authenticationService.getAuthToken();
     return this.httpClient.patch('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json?auth=' + fireBaseToken,
       {
         'offenderID': offenderID

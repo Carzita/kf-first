@@ -29,15 +29,13 @@ import {OffenderDetailsComponent} from './_components/offenders-page/offender-pr
 import {OffenderResolverService} from './services/offenderResolver.service';
 import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {EventNewResolverService} from './services/eventNewResolver.service';
 import {EventsHandledListComponent} from './_components/events-page/events-handled-list/events-handled-list.component';
-import {EventsHandledDetailsComponent} from './_components/events-page/events-handled-list/events-handled-details/events-handled-details.component';
-import {EventHandledResolverService} from './services/eventHandledResolver.service';
+import {EventDetailsResolverService} from './services/eventDetailsResolver.service';
 import {AuthGuardService} from './services/authGuard.service';
 import { OffenderEquipmentComponent } from './_components/offenders-page/offender-profile/offender-equipment/offender-equipment.component';
 import { OffenderHandledEventsComponent } from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-events.component';
 import { OffenderEventDetailsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-event-details/offender-event-details.component';
-import { OffenderHandledEventDetailComponent } from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-event-detail/offender-handled-event-detail.component';
+import { HandledEventDetailsComponent } from './_components/offenders-page/offender-profile/offender-handled-events/handled-event-details/handled-event-details.component';
 
 const config = {
   apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
@@ -65,11 +63,10 @@ const config = {
     OffenderDetailsComponent,
     OffenderEventsComponent,
     EventsHandledListComponent,
-    EventsHandledDetailsComponent,
     OffenderEquipmentComponent,
     OffenderHandledEventsComponent,
     OffenderEventDetailsComponent,
-    OffenderHandledEventDetailComponent
+    HandledEventDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -91,8 +88,7 @@ const config = {
     EventService,
     AuthenticationService,
     OffenderResolverService,
-    EventNewResolverService,
-    EventHandledResolverService,
+    EventDetailsResolverService,
     AuthGuardService
   ],
   bootstrap: [AppComponent]

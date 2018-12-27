@@ -4,11 +4,11 @@ import {Event} from '../../../../../_models/event';
 import {ActivatedRoute, Data} from '@angular/router';
 
 @Component({
-  selector: 'app-offender-handled-event-detail',
-  templateUrl: './offender-handled-event-detail.component.html',
-  styleUrls: ['./offender-handled-event-detail.component.css']
+  selector: 'app-handled-event-details',
+  templateUrl: './handled-event-details.component.html',
+  styleUrls: ['./handled-event-details.component.css']
 })
-export class OffenderHandledEventDetailComponent implements OnInit {
+export class HandledEventDetailsComponent implements OnInit {
   singleOffender: Offender;
   errorLoading = false;
   convertedEventArray: Event[];
