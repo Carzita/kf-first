@@ -88,12 +88,7 @@ export class OffenderDetailsComponent implements OnInit {
         });
   }
 
-  convertResponseToArray(comments) {
-    return Object.keys(comments).map((key) => comments[key]);
-  }
-
   updateComments() {
-    console.log('pis lort');
      this.offenderService.getAllOffenderComments(this.singleOffender.offenderID)
       .subscribe(
         comments => {
@@ -104,6 +99,10 @@ export class OffenderDetailsComponent implements OnInit {
         error => {
           console.log(error);
         });
+  }
+// converts the response object into an array
+  convertResponseToArray(comments) {
+    return Object.keys(comments).map((key) => comments[key]);
   }
 
 }

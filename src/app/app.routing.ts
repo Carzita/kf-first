@@ -10,7 +10,7 @@ import {OffenderProfileComponent} from './_components/offenders-page/offender-pr
 import {OffenderDetailsComponent} from './_components/offenders-page/offender-profile/offender-details/offender-details.component';
 import {OffenderResolverService} from './services/offenderResolver.service';
 import {OffenderEventsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-events.component';
-import {EventsDetailComponent} from './_components/events-page/events-list/events-detail/events-detail.component';
+import {EventsDetailComponent} from './_components/events-page/events-detail/events-detail.component';
 import {EventNewResolverService} from './services/eventNewResolver.service';
 import {EventsHandledListComponent} from './_components/events-page/events-handled-list/events-handled-list.component';
 import {EventHandledResolverService} from './services/eventHandledResolver.service';
@@ -18,17 +18,22 @@ import {AuthGuardService} from './services/authGuard.service';
 import {OffenderEquipmentComponent} from './_components/offenders-page/offender-profile/offender-equipment/offender-equipment.component';
 import {OffenderHandledEventsComponent} from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-events.component';
 import {OffenderEventDetailsComponent} from './_components/offenders-page/offender-profile/offender-events/offender-event-details/offender-event-details.component';
+import {EventsListComponent} from './_components/events-page/events-list/events-list.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/events/new', canActivate: [AuthGuardService], pathMatch: 'full'},
   {
-    path: 'events/new', component: EventsPageComponent, canActivate: [AuthGuardService], children: [
-      {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventNewResolverService}}
-    ]
-  },
-  {
-    path: 'events/handled', component: EventsHandledListComponent, canActivate: [AuthGuardService], children: [
-      {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventHandledResolverService}}
+    path: 'events', component: EventsPageComponent, canActivate: [AuthGuardService], children: [
+      {
+        path: 'new', component: EventsListComponent, canActivate: [AuthGuardService], children: [
+          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventNewResolverService}}
+        ]
+      },
+      {
+        path: 'handled', component: EventsHandledListComponent, canActivate: [AuthGuardService], children: [
+          {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventHandledResolverService}}
+        ]
+      },
     ]
   },
   {path: 'equipment', component: EquipmentPageComponent},

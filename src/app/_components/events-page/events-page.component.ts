@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {faCheckCircle, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-events-page',
@@ -6,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events-page.component.css']
 })
 export class EventsPageComponent implements OnInit {
-  constructor() { }
+  constructor(private router: Router) { }
+
+  // FontAwesome icons
+  faExclamationCircle = faExclamationCircle;
+  faCheckCircle = faCheckCircle;
 
   ngOnInit() {
+   this.router.navigate(['/events/new']);
   }
 
 }

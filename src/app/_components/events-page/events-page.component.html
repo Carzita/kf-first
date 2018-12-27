@@ -1,1 +1,12 @@
-<app-events-list></app-events-list>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand"[routerLink]="['']"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active"><a [routerLink]="['/events/new']"><fa-icon [icon]="faExclamationCircle"></fa-icon> Nye hændelser</a></li>
+      <li routerLinkActive="active"><a [routerLink]="['/events/handled']"><fa-icon [icon]="faCheckCircle"></fa-icon> Behandlede hændelser</a></li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

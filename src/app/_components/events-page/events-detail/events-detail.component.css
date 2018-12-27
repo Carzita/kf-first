@@ -17,6 +17,11 @@
 
 .right-container {
   float: right;
-  width: 49%;
-  margin-right: 1em;
+  width: 40%;
+  margin-right: 5em;
+}
+
+.center {
+  text-align: -webkit-right;
+  margin-top: -20px;
 }

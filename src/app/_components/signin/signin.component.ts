@@ -14,8 +14,10 @@ export class SigninComponent implements OnInit {
   faSignInAlt = faSignInAlt;
 
   signInForm = this.fb.group({
-    email: [Validators.email, Validators.required],
-    password: [Validators.required],
+    // email: [Validators.email, Validators.required],
+    email: [],
+    // password: [Validators.required],
+    password: [],
   });
 
   constructor(private authService: AuthenticationService, private fb: FormBuilder, private router: Router) {
@@ -26,8 +28,10 @@ export class SigninComponent implements OnInit {
 
   signIn() {
     console.log(this.signInForm.value);
-    const email = this.signInForm.get('email').value;
-    const password = this.signInForm.get('password').value;
+   // const email = this.signInForm.get('email').value;
+    const email = 'test@test.com';
+    // const password = this.signInForm.get('password').value;
+    const password = 'A123456';
     this.authService.signUserIn(email, password);
     if (!this.authService.isTokenValid()) {
       this.invalidCrediantials = true;

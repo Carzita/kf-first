@@ -12,7 +12,6 @@ export class EventsHandledListComponent implements OnInit {
   objectArray: Event[];
   convertedEventArray: Event[];
   eventIDArray: any[];
-  showSpinner = true;
   errorLoading = false;
 
   // declaration of FontAwesome icons
@@ -39,10 +38,8 @@ export class EventsHandledListComponent implements OnInit {
           this.objectArray = events;
           this.eventIDArray = Object.keys(this.objectArray);
           this.convertedEventArray = this.generateArray(this.objectArray);
-          this.showSpinner = false;
         },
         error => {
-          this.showSpinner = false;
           this.errorLoading = true;
           console.log(error);
         }

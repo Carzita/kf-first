@@ -23,7 +23,7 @@ export class OffenderHandledEventDetailComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
-          this.convertedEventArray = this.convertResponseToArray(this.singleOffender.newEvents);
+          this.convertedEventArray = this.convertResponseToArray(this.singleOffender.handledEvents);
           console.log(this.convertedEventArray);
           this.singleEvent = this.convertedEventArray[0];
         },

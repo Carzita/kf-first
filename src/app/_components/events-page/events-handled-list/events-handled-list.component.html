@@ -1,17 +1,4 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand"[routerLink]="['']"></a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/events/new']"><fa-icon [icon]="faExclamationCircle"></fa-icon> Nye hændelser</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/events/handled']"><fa-icon [icon]="faCheckCircle"></fa-icon> Behandlede hændelser</a></li>
-    </ul>
-  </div>
-</nav>
-
 <app-not-found *ngIf="errorLoading"></app-not-found>
-<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
 
 <table class="table table-striped table-hover">
   <thead>

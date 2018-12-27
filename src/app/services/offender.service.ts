@@ -39,7 +39,7 @@ export class OffenderService {
     return this.httpClient.get<Offender>('https://iokrf-3d980.firebaseio.com/offenders/' + id + '.json?auth=' + fireBaseToken)
       .pipe(
         tap( // log the result or error
-          data => console.log(data),
+          data => console.log('getSingleOffender called'),
           error => console.log(error))
       );
   }

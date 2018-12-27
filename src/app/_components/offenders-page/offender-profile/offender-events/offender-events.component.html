@@ -21,7 +21,7 @@
 
 <app-not-found *ngIf="errorLoading"></app-not-found>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" *ngIf="!noEvents">
   <thead>
   <tr>
     <th>Navn</th>
@@ -29,7 +29,7 @@
     <th>Tidspunkt</th>
   </tr>
   </thead>
-  <tbody *ngIf="!noEvents">
+  <tbody>
   <!--<tr class="clickable" [routerLink]="[eventIDArray[x], 'details']" *ngFor="let Event of eventArray; let x = index;">-->
   <tr class="clickable" [routerLink]="[singleOffender.offenderID, 'details']" *ngFor="let Event of eventArray">
     <td>{{ Event.firstName }} {{Event.middleName}} {{Event.lastName}}</td>
@@ -39,6 +39,7 @@
   </tbody>
 </table>
 <div class="h2">
-<h2 *ngIf="noEvents">Ingen hændelser for denne forbryder</h2>
+  <h2 *ngIf="noEvents">Ingen nye hændelser for denne forbryder</h2>
 </div>
+
 <router-outlet></router-outlet>

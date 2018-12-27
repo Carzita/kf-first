@@ -9,7 +9,7 @@ import {OffendersPageComponent} from './_components/offenders-page/offenders-pag
 import {MainHeaderComponent} from './_components/main-header/main-header.component';
 import {OffendersListComponent} from './_components/offenders-page/offenders-list/offenders-list.component';
 import {EventsListComponent} from './_components/events-page/events-list/events-list.component';
-import {EventsDetailComponent} from './_components/events-page/events-list/events-detail/events-detail.component';
+import {EventsDetailComponent} from './_components/events-page/events-detail/events-detail.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
