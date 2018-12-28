@@ -21,16 +21,16 @@ import {EventsListComponent} from './_components/events-page/events-list/events-
 import {HandledEventDetailsComponent} from './_components/offenders-page/offender-profile/offender-handled-events/handled-event-details/handled-event-details.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/events/new', canActivate: [AuthGuardService], pathMatch: 'full'},
+  {path: '', redirectTo: 'offenders', pathMatch: 'full'},
   {
     path: 'events', component: EventsPageComponent, canActivate: [AuthGuardService], children: [
       {
-        path: 'new', component: EventsListComponent, canActivate: [AuthGuardService], children: [
+        path: 'new', component: EventsListComponent, children: [
           {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventDetailsResolverService}}
         ]
       },
       {
-        path: 'handled', component: EventsHandledListComponent, canActivate: [AuthGuardService], children: [
+        path: 'handled', component: EventsHandledListComponent, children: [
           {path: ':id/details', component: EventsDetailComponent, resolve: {event: EventDetailsResolverService}}
         ]
       },
@@ -43,14 +43,22 @@ const appRoutes: Routes = [
       {path: 'create', component: OffendersCreateComponent},
       {path: ':id/details', component: OffenderDetailsComponent, resolve: {offender: OffenderResolverService}},
       {
-        path: ':id/newEvents', component: OffenderEventsComponent, resolve: {offender: OffenderResolverService}, children: [
-          {path: ':id/details', component: OffenderEventDetailsComponent, resolve: {offender: OffenderResolverService}}]
+        path: ':id/newEvents', component: OffenderEventsComponent,
+        resolve: {offender: OffenderResolverService}, children: [
+          {
+            path: ':id/details', component: OffenderEventDetailsComponent,
+            resolve: {offender: OffenderResolverService}}]
       },
       {
-        path: ':id/handledEvents', component: OffenderHandledEventsComponent, resolve: {offender: OffenderResolverService}, children: [
-          {path: ':id/details', component: HandledEventDetailsComponent, resolve: {offender: OffenderResolverService}}]
+        path: ':id/handledEvents', component: OffenderHandledEventsComponent,
+        resolve: {offender: OffenderResolverService}, children: [
+          {
+            path: ':id/details', component: HandledEventDetailsComponent,
+            resolve: {offender: OffenderResolverService}}]
       },
-      {path: ':id/equipment', component: OffenderEquipmentComponent, resolve: {offender: OffenderResolverService}}
+      {
+        path: ':id/equipment', component: OffenderEquipmentComponent,
+        resolve: {offender: OffenderResolverService}}
     ]
   },
   {path: 'signin', component: SigninComponent},

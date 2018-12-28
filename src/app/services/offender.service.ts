@@ -113,16 +113,6 @@ export class OffenderService {
       );
   }
 
-/*  getOffenderSingleNewEvent(offenderId: string, eventId: string): Observable<Event> {
-    return this.httpClient.get<Event>('https://iokrf-3d980.firebaseio.com/offenders/' + offenderId + '/events/newEvents/' + eventId + '.json')
-    // return this.httpClient.get<Offender[]>('https://iokrf-3d980.firebaseio.com/offenders.json?auth=' + fireBaseToken)
-      .pipe(
-        tap( // log the result or error
-          data => console.log(data),
-          error => console.log(error))
-      );
-  }*/
-
   // retrieve an offender's resolved events
   getOffenderHandledEvents(id: string): Observable<Event[]> {
     const fireBaseToken = this.authenticationService.getAuthToken();

@@ -8,8 +8,6 @@ import {throwError} from 'rxjs';
 export class AuthenticationService {
   fireBaseToken: string;
 
-  // private signInError = new Subject<string>();
-
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
@@ -19,33 +17,42 @@ export class AuthenticationService {
         response => {
           firebase.auth().currentUser.getIdToken()
             .then(
-              (token: string) => this.fireBaseToken = token
+              (token: string) => {
+                this.fireBaseToken = token;
+                sessionStorage.setItem('currentUser', token);
+              }
             );
           console.log(response);
-          this.router.navigate(['/events/new']);
+          this.router.navigate(['/offenders']);
         }
       )
       .catch(
         error => {
           console.log(error);
           if (error.status === 400) {
-            return throwError('Wrong credentials');
+            return throwError('Wrong credentials, try again');
           }
         }
       );
   }
 
   getAuthToken() {
-    firebase.auth().currentUser.getIdToken()
-      .then(
-        (token: string) => this.fireBaseToken = token
-      );
+    this.fireBaseToken = sessionStorage.getItem('currentUser');
     return this.fireBaseToken;
   }
 
   isTokenValid() {
-    return firebase.auth().currentUser != null;
-    // return true;
+    return this.fireBaseToken = sessionStorage.getItem('currentUser');
+  }
+
+  refreshToken() {
+    firebase.auth().currentUser.getIdToken(true)
+      .then(
+        token => {
+          sessionStorage.setItem('currentUser', token);
+        })
+      .catch(
+        error => console.log(error));
   }
 
   signOut() {
@@ -53,7 +60,7 @@ export class AuthenticationService {
       .then(
         response => {
           console.log(response);
-          this.fireBaseToken = null;
+          sessionStorage.removeItem('currentUser');
         })
       .catch(
         error => console.log(error));
