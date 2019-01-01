@@ -9,8 +9,8 @@
       <li routerLinkActive="active"><a [routerLink]="['/equipment']"><fa-icon [icon]="faHdd"></fa-icon> Udstyr</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!authenticationService.isTokenValid()"><a [routerLink]="['/signin']"><fa-icon [icon]="faSignInAlt"></fa-icon> Log ind</a></li>
-      <li *ngIf="authenticationService.isTokenValid()"><a (click)="signOut()" [routerLink]="['/signin']"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log ud</a></li>
+      <li routerLinkActive="active" *ngIf="!authenticationService.isTokenValid()"><a [routerLink]="['/signin']"><fa-icon [icon]="faSignInAlt"></fa-icon> Log ind</a></li>
+      <li routerLinkActive="active" *ngIf="authenticationService.isTokenValid()"><a (click)="signOut()" [routerLink]="['/signin']"><fa-icon [icon]="faSignOutAlt"></fa-icon> Log ud</a></li>
     </ul>
   </div>
 </nav>

@@ -15,13 +15,13 @@ export class EquipmentPageComponent implements OnInit {
   }
 
   getRealTimeStamp() {
-    const d = new Date();
-    const dato = d.getDate();
-    const month = d.getMonth();
-    const year = d.getFullYear();
-    const hour = d.getHours();
-    const minutes = d.getMinutes();
-    return dato + '-' + month + '-' + year + ' ' + hour + '-' + minutes;
+    const date = new Date();
+    const day = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    const month = (date.getMonth() < 10 ? '0' : '') + (date.getMonth() + 1);
+    const year = date.getFullYear();
+    const hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
+    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+    return day + '-' + month + '-' + year + ' ' + hour + ':' + minutes;
   }
 
 }

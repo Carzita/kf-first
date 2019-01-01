@@ -55,7 +55,7 @@ export class OffenderEventsComponent implements OnInit {
   }
 
   // to be used when web sockets are implemented in a back-end
-  getOffenderNewEvents() {
+/*  getOffenderNewEvents() {
     this.offenderService.getOffenderNewEvents(this.singleOffender.cpr)
       .subscribe(
         events => {
@@ -66,6 +66,6 @@ export class OffenderEventsComponent implements OnInit {
             this.noEvents = true;
           }
         });
-  }
+  }*/
 
 }

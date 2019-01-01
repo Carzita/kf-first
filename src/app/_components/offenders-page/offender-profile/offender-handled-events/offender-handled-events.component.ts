@@ -54,7 +54,8 @@ export class OffenderHandledEventsComponent implements OnInit {
     return Object.keys(events).map((key) => events[key]);
   }
 
-  updateOffenderHandledEvents() {
+  // to be used when web sockets are implemented in a back-end
+/*  updateOffenderHandledEvents() {
     this.offenderService.getOffenderHandledEvents(this.singleOffender.cpr)
       .subscribe(
         events => {
@@ -65,6 +66,6 @@ export class OffenderHandledEventsComponent implements OnInit {
             this.noEvents = true;
           }
         });
-  }
+  }*/
 
 }
