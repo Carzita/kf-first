@@ -9,6 +9,7 @@ import {faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-ic
   styleUrls: ['./events-handled-list.component.css']
 })
 export class EventsHandledListComponent implements OnInit {
+  showSpinner = true;
   objectArray: Event[];
   convertedEventArray: Event[];
   eventIDArray: any[];
@@ -27,6 +28,7 @@ export class EventsHandledListComponent implements OnInit {
     this.getAllHandledEvents();
   }
 
+  // converts the response object into an array
   generateArray(events) {
     return Object.keys(events).map((key) => events[key]);
   }
@@ -38,8 +40,10 @@ export class EventsHandledListComponent implements OnInit {
           this.objectArray = events;
           this.eventIDArray = Object.keys(this.objectArray);
           this.convertedEventArray = this.generateArray(this.objectArray);
+          this.showSpinner = false;
         },
         error => {
+          this.showSpinner = false;
           this.errorLoading = true;
           console.log(error);
         }

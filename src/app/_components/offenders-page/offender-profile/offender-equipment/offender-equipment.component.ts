@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faHdd, faAddressCard, faListUl, faUserPlus} from '@fortawesome/free-solid-svg-icons';
+import {faHdd, faAddressCard, faUserPlus, faCheckCircle, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 import {Offender} from '../../../../_models/offender';
 import {ActivatedRoute, Data} from '@angular/router';
 
@@ -13,9 +13,10 @@ export class OffenderEquipmentComponent implements OnInit {
 
   // icons for sub navigation bar
   faHdd = faHdd;
-  faListUl = faListUl;
   faAddressCard = faAddressCard;
   faUserPlus = faUserPlus;
+  faCheckCircle = faCheckCircle;
+  faExclamationCircle = faExclamationCircle;
 
   constructor(private route: ActivatedRoute) { }
 

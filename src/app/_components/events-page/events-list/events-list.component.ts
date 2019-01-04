@@ -10,6 +10,7 @@ import {faExclamationCircle, faCheckCircle} from '@fortawesome/free-solid-svg-ic
 })
 
 export class EventsListComponent implements OnInit {
+  showSpinner = true;
   objectArray: Event[];
   convertedEventArray: Event[];
   eventIDArray: any[];
@@ -28,10 +29,6 @@ export class EventsListComponent implements OnInit {
     this.getAllNewEvents();
   }
 
-  generateArray(events) {
-    return Object.keys(events).map((key) => events[key]);
-  }
-
   getAllNewEvents() {
     this.eventService.getAllNewEvents()
       .subscribe(
@@ -40,13 +37,20 @@ export class EventsListComponent implements OnInit {
           // this is needed for routing to identify the ID of chosen event
           this.eventIDArray = Object.keys(this.objectArray);
           // converting the array
-          this.convertedEventArray = this.generateArray(this.objectArray);
+          this.convertedEventArray = this.convertResponseToArray(this.objectArray);
+          this.showSpinner = false;
         },
         error => {
+          this.showSpinner = false;
           this.errorLoading = true;
           console.log(error);
         }
       );
+  }
+
+// converts the response object into an array
+  convertResponseToArray(events) {
+    return Object.keys(events).map((key) => events[key]);
   }
 
   /*  getEventID(index: number) {
