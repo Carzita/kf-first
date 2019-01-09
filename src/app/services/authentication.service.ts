@@ -2,24 +2,37 @@ import {Injectable} from '@angular/core';
 import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {throwError} from 'rxjs';
+import {Subject} from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
   fireBaseToken: string;
+  private logInErrorMessage = new Subject<string>();
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
+  public getLoginErrorMessage(): Subject<string> {
+    return this.logInErrorMessage;
+  }
+
   signUserIn(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
           firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => {
                 this.fireBaseToken = token;
-                sessionStorage.setItem('currentUser', token);
+                const expires = new Date().getTime() + 3540000;
+                const sessionStorageObject = {
+                  expires: expires,
+                  token: {
+                    token: token
+                  }
+                };
+                console.log('expires at: ' + sessionStorageObject.expires);
+                sessionStorage.setItem('currentUser', JSON.stringify(sessionStorageObject));
               }
             );
           console.log(response);
@@ -28,21 +41,30 @@ export class AuthenticationService {
       )
       .catch(
         error => {
-          console.log(error);
-          if (error.status === 400) {
-            return throwError('Wrong credentials, try again');
-          }
+          this.logInErrorMessage.next(error.message);
         }
       );
   }
 
   getAuthToken() {
-    this.fireBaseToken = sessionStorage.getItem('currentUser');
-    return this.fireBaseToken;
+    const sessionObject = JSON.parse(sessionStorage.getItem('currentUser'));
+    return sessionObject.token.token;
   }
 
   isTokenValid() {
-    return this.fireBaseToken = sessionStorage.getItem('currentUser');
+    console.log('isTokenValid called');
+    const currentTime = new Date().getTime();
+    const sessionObject = JSON.parse(sessionStorage.getItem('currentUser'));
+    if (sessionObject === null) {
+      return false;
+    }
+    if (currentTime < sessionObject.expires) {
+      return true;
+    } else {
+      console.log('Token not valid, removing from session storage and sending to log in');
+      sessionStorage.removeItem('currentUser');
+      return false;
+    }
   }
 
   refreshToken() {

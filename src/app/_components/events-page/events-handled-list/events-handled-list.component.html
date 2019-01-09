@@ -1,7 +1,6 @@
-<app-not-found *ngIf="errorLoading"></app-not-found>
-<app-load-spinner *ngIf="showSpinner"></app-load-spinner>
-
 <table class="table table-striped table-hover">
+  <app-could-not-load *ngIf="errorLoading"></app-could-not-load>
+  <app-load-spinner *ngIf="showSpinner"></app-load-spinner>
   <thead>
   <tr>
     <th>Navn</th>

@@ -8,13 +8,6 @@ import {AuthenticationService} from './authentication.service';
 import {Router} from '@angular/router';
 import {OffenderComment} from '../_models/offenderComment';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-type': 'application/json'
-    // 'Authorization': 'my-auth-fireBaseToken'
-  })
-};
-
 @Injectable()
 export class OffenderService {
   responseConvertArray: any[];
@@ -62,7 +55,6 @@ export class OffenderService {
 
   // after adding offender in the above method, the offenderID is added as a property of the offender so it is easily accessed
   insertOffenderID(offenderID: string, fireBaseToken: string) {
-   // const fireBaseToken = this.authenticationService.getAuthToken();
     return this.httpClient.patch('https://iokrf-3d980.firebaseio.com/offenders/' + offenderID + '.json?auth=' + fireBaseToken,
       {
         'offenderID': offenderID

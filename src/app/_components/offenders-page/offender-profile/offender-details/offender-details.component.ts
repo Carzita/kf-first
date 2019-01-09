@@ -56,7 +56,7 @@ export class OffenderDetailsComponent implements OnInit {
       .subscribe(
         (data: Data) => {
           this.singleOffender = data['offender'];
-          if (this.singleOffender.comments != null) {
+          if (this.singleOffender.comments != null) { // if comments exist, converts from object to array
             this.convertedCommentArray = this.convertResponseToArray(this.singleOffender.comments);
             console.log(this.convertedCommentArray);
           } else {
@@ -71,6 +71,7 @@ export class OffenderDetailsComponent implements OnInit {
 
   }
 
+  // deletes offender from FireBase - cannot be undone
   deleteOffender() {
     if (confirm('Er du sikker på at du vil slette: \n ' + this.singleOffender.firstName + ' ' +
       this.singleOffender.lastName + '\n DETTE KAN IKKE FORTYDES!')) {
@@ -78,6 +79,7 @@ export class OffenderDetailsComponent implements OnInit {
     }
   }
 
+  // adds a comment to offender profile
   addComment() {
     const comment = this.commentForm.get('comment').value;
     this.offenderService.addOffenderComment(comment, OffenderDetailsComponent.getTimeStamp(), this.singleOffender.offenderID)
@@ -90,8 +92,9 @@ export class OffenderDetailsComponent implements OnInit {
         });
   }
 
+  // updates the comments
   updateComments() {
-    if (this.noComments === true) {
+    if (this.noComments === true) { // this is to ensure that no comments view is removed
       this.noComments = false;
     }
     this.offenderService.getAllOffenderComments(this.singleOffender.offenderID)
@@ -110,5 +113,4 @@ export class OffenderDetailsComponent implements OnInit {
   convertResponseToArray(comments) {
     return Object.keys(comments).map((key) => comments[key]);
   }
-
 }

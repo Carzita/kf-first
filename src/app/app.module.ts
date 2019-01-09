@@ -36,6 +36,7 @@ import { OffenderEquipmentComponent } from './_components/offenders-page/offende
 import { OffenderHandledEventsComponent } from './_components/offenders-page/offender-profile/offender-handled-events/offender-handled-events.component';
 import { OffenderEventDetailsComponent } from './_components/offenders-page/offender-profile/offender-events/offender-event-details/offender-event-details.component';
 import { HandledEventDetailsComponent } from './_components/offenders-page/offender-profile/offender-handled-events/handled-event-details/handled-event-details.component';
+import {CouldNotLoadComponent} from './_components/could-not-load.component';
 
 const config = {
   apiKey: 'AIzaSyBWNyT0Sn_3z_UdG_JGFeG0Llx1sdGvlhk',
@@ -66,7 +67,8 @@ const config = {
     OffenderEquipmentComponent,
     OffenderHandledEventsComponent,
     OffenderEventDetailsComponent,
-    HandledEventDetailsComponent
+    HandledEventDetailsComponent,
+    CouldNotLoadComponent
   ],
   imports: [
     BrowserModule,

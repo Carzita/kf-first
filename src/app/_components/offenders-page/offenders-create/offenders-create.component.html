@@ -8,14 +8,14 @@
     <form [formGroup]="offendersForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>
-          CPR*:
+          CPR<label class="red">*</label>:
           <input id="cpr" type="text" formControlName="cpr" required pattern="[0-3][0-9][0-1][1-9]\d{2}-\d{4}?[^0-9]*" ngModel class="form-control">
             <div *ngIf="offendersForm.get('cpr').invalid && (offendersForm.get('cpr').dirty || offendersForm.get('cpr').touched)"
-            class="alert alert-danger">CPR skal være på form ddmmyy-xxxx</div>
+            class="alert alert-danger">CPR-nr skal have formatet ddmmyy-xxxx</div>
         </label>
         <br>
         <label>
-          Fornavn*:
+          Fornavn<label class="red">*</label>:
           <input type="text" formControlName="firstName" required ngModel class="form-control">
           <div *ngIf="offendersForm.get('firstName').invalid && (offendersForm.get('firstName').dirty || offendersForm.get('firstName').touched)"
                class="alert alert-danger">Fornavn skal udfyldes</div>
@@ -27,48 +27,48 @@
         </label>
         <br>
         <label>
-          Efternavn*:
+          Efternavn<label class="red">*</label>:
           <input type="text" formControlName="lastName" required ngModel class="form-control">
           <div *ngIf="offendersForm.get('lastName').invalid && (offendersForm.get('lastName').dirty || offendersForm.get('lastName').touched)"
                class="alert alert-danger">Efternavn skal udfyldes</div>
         </label>
         <br>
         <label>
-          By*:
+          By<label class="red">*</label>:
           <input type="text" formControlName="city" required ngModel class="form-control">
           <div *ngIf="offendersForm.get('city').invalid && (offendersForm.get('city').dirty || offendersForm.get('city').touched)"
                class="alert alert-danger">By skal udfyldes</div>
         </label>
         <br>
         <label>
-          Adresse*:
+          Adresse<label class="red">*</label>:
           <input type="text" formControlName="address" required ngModel class="form-control">
           <div *ngIf="offendersForm.get('address').invalid && (offendersForm.get('address').dirty || offendersForm.get('address').touched)"
                class="alert alert-danger">Adresse skal udfyldes</div>
         </label>
         <br>
         <label>
-          Postnummer*:
+          Postnummer<label class="red">*</label>:
           <input type="text" formControlName="zip" required ngModel class="form-control">
           <div *ngIf="offendersForm.get('zip').invalid && (offendersForm.get('zip').dirty || offendersForm.get('zip').touched)"
                class="alert alert-danger">Postnummer skal udfyldes</div>
         </label>
         <br>
         <label>
-          Startdato*:
+          Startdato<label class="red">*</label>:
           <input type="text" formControlName="startDate" required pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" ngModel class="form-control">
           <div *ngIf="offendersForm.get('startDate').invalid && (offendersForm.get('startDate').dirty || offendersForm.get('startDate').touched)"
                class="alert alert-danger">Startdato skal være på form dd/mm/yyyy</div>
         </label>
         <br>
         <label>
-          Slutdato*:
+          Slutdato<label class="red">*</label>:
           <input type="text" formControlName="endDate" required pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" ngModel class="form-control">
           <div *ngIf="offendersForm.get('endDate').invalid && (offendersForm.get('endDate').dirty || offendersForm.get('endDate').touched)"
                class="alert alert-danger">Slutdato skal være på form dd/mm/yyyy</div>
         </label>
 
-        <p style="color:red">* Skal udfyldes</p>
+        <p style="color:red"><label class="red">*</label> Skal udfyldes</p>
       </div>
       <button class="btn btn-primary" type="submit" [disabled]="!offendersForm.valid">Opret forbryder</button>
 
