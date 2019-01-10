@@ -24,6 +24,7 @@ export class AuthenticationService {
             .then(
               (token: string) => {
                 this.fireBaseToken = token;
+                // expiry time is set to 59 minutes
                 const expires = new Date().getTime() + 3540000;
                 const sessionStorageObject = {
                   expires: expires,
@@ -31,7 +32,6 @@ export class AuthenticationService {
                     token: token
                   }
                 };
-                console.log('expires at: ' + sessionStorageObject.expires);
                 sessionStorage.setItem('currentUser', JSON.stringify(sessionStorageObject));
               }
             );
@@ -41,6 +41,7 @@ export class AuthenticationService {
       )
       .catch(
         error => {
+          // Error message is emitted through Subject to sign in component
           this.logInErrorMessage.next(error.message);
         }
       );
@@ -52,7 +53,6 @@ export class AuthenticationService {
   }
 
   isTokenValid() {
-    console.log('isTokenValid called');
     const currentTime = new Date().getTime();
     const sessionObject = JSON.parse(sessionStorage.getItem('currentUser'));
     if (sessionObject === null) {

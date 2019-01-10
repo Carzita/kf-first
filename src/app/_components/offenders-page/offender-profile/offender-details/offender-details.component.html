@@ -79,12 +79,10 @@
 </div>
 
 <div class="right-container">
-  <!--<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md offset-2">-->
   <form [formGroup]="commentForm" (ngSubmit)="addComment()">
     <div class="form-group">
       <label for="commentBox">
         Tilføj kommentar:
-        <!--<input id="comment" type="text" formControlName="comment" required ngModel class="form-control">-->
         <textarea id="commentBox" rows="5" cols="70" formControlName="comment" required ngModel class="form-control"></textarea>
       </label>
     </div>
@@ -95,11 +93,8 @@
     <div class="panel-heading">Kommentarer</div>
     <div class="panel-body" *ngFor="let comments of convertedCommentArray">
       <div>
-        <span class="firstlabel">{{comments.time}} {{comments.comment}}</span>
+        <span class="firstlabel"><b>{{comments.time}}:</b> <br> {{comments.comment}}</span>
       </div>
-<!--      <div class="center">
-        <span class="secondlabel">{{comments.comment}}</span>
-      </div>-->
     </div>
   </div>
 
@@ -111,9 +106,4 @@
       </div>
     </div>
   </div>
-
-
 </div>
-
-
-
