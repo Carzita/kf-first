@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+/*
+!
+ AUTHOR: http://tobiasahlin.com/spinkit/
+!
+ */
+
 @Component({
   selector: 'app-load-spinner',
   templateUrl: './load-spinner.component.html',
